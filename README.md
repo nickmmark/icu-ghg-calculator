@@ -3,6 +3,7 @@ a webapp to estimate intensive care unit greenhouse gas emissions and motivate c
 
 
 ### Files
+```
 / (project root)
 ├─ index.html                     # Minimal HTML shell. Loads styles & JS modules in order.
 ├─ styles.css                     # All CSS you currently have (moved out of index.html)
@@ -25,3 +26,4 @@ a webapp to estimate intensive care unit greenhouse gas emissions and motivate c
 │  └─ main.js                     # Boot sequence (load data → init UI → baseline → render → apply)
 └─ /schemas
    └─ interventions.schema.json   # Lightweight runtime validator for interventions.json (optional)
+```
