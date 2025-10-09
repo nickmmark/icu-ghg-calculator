@@ -27,3 +27,30 @@ a webapp to estimate intensive care unit greenhouse gas emissions and motivate c
 └─ /schemas
    └─ interventions.schema.json   # Lightweight runtime validator for interventions.json (optional)
 ```
+
+state.js
+state (object): { assumptions, interventions, zipTable, subregionTable, inputs, baselinePractices, derived }
+
+data.js
+loadAllData() → loads all four files; normalizes interventions (defaults OFF/0); validates shapes
+
+ui.js
+initUI(), updateTopBar()
+
+baseline.js
+lookupGridFactor(), recalcBaseline()
+
+interventions.js
+renderBaselinePractices(), renderInterventions(), applyInterventions()
+
+charts.js
+drawStack(containerId, categories, title), drawCompare()
+
+exports.js
+exportCSV(), exportJSON(), renderAssumptionsHTML()
+
+router.js
+updateURLState(), applyURLState()
+
+main.js
+orchestrates boot order
