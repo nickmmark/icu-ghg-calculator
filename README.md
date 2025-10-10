@@ -96,7 +96,7 @@ python3 converter.py csv-to-json \
 Uses the [EPA eGRID dataset](https://www.epa.gov/egrid) to estimate regional CO2 production.
 
 # 🪪 License
-This is provided "as is" without warranty of any kind with under an [MIT License]().
+This is provided "as is" without warranty of any kind with under an [MIT License](https://github.com/nickmmark/icu-ghg-calculator/blob/main/LICENSE).
 
 # 📚️ References
 
