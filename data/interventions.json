@@ -5,39 +5,223 @@
     "tree_seedlings_10yr_per_tCO2e": 7.0
   },
   "groups": [
-    { "id": "infrastructure", "label": "Infrastructure", "icon": "🏗️" },
-    { "id": "pharmacy", "label": "Pharmacy", "icon": "💊" },
-    { "id": "respiratory", "label": "Respiratory", "icon": "🫁" },
-    { "id": "low_value_care", "label": "Low-value care", "icon": "🧭" },
-    { "id": "nutrition", "label": "Nutrition", "icon": "🥗" },
-    { "id": "laundry", "label": "Laundry & Reuse", "icon": "🧺" },
-    { "id": "waste_removal", "label": "Waste Removal", "icon": "🗑️" }
+    {
+      "id": "pharmacy",
+      "label": "Pharmacy",
+      "icon": "\ud83d\udc8a"
+    },
+    {
+      "id": "respiratory",
+      "label": "Respiratory",
+      "icon": "\ud83e\udec1"
+    },
+    {
+      "id": "low_value_care",
+      "label": "Low-value care",
+      "icon": "\ud83e\udded"
+    },
+    {
+      "id": "nutrition",
+      "label": "Nutrition",
+      "icon": "\ud83e\udd57"
+    },
+    {
+      "id": "infrastructure",
+      "label": "Infrastructure",
+      "icon": "\ud83c\udfd7\ufe0f"
+    },
+    {
+      "id": "laundry",
+      "label": "Laundry & Reuse",
+      "icon": "\ud83e\uddfa"
+    },
+    {
+      "id": "waste_removal",
+      "label": "Waste Removal",
+      "icon": "\ud83d\uddd1\ufe0f"
+    }
   ],
   "interventions": [
     {
+      "id": "reduce_paper_printing",
+      "group": "infrastructure",
+      "title": "Reduce paper printouts and forms",
+      "type": "binary",
+      "impact_category": "procurement",
+      "baseline_control": {
+        "label": "Paper printouts routinely used?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Digital workflows cut paper procurement and waste",
+        "params": {
+          "percent_reduction": 2.0,
+          "category": "procurement",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "\ud83d\udda8\ufe0f",
+        "summary": "Go digital for charts and orders.",
+        "details_markdown": "Approx 1\u20132 % procurement savings; consistent with Green ICU initiatives.",
+        "references": [
+          {
+            "label": "Mowatt et al 2023 Table 1",
+            "url": "Mowatt et al 2023 Table 1"
+          },
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "telepresence_transport",
+      "group": "low_value_care",
+      "title": "Use telepresence for meetings and follow-up",
+      "type": "binary",
+      "impact_category": "waste",
+      "baseline_control": {
+        "label": "In-person off-site transport for all consults?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Avoids vehicle emissions from staff/patient travel",
+        "params": {
+          "percent_reduction": 3.0,
+          "category": "waste",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "\ud83d\udcbb",
+        "summary": "Teleconsults and family video visits replace travel.",
+        "details_markdown": "Reduces travel-related CO\u2082 \u2248 0.1\u20130.3 t per ICU bed year.",
+        "references": [
+          {
+            "label": "Mowatt et al 2023 Table 1",
+            "url": "Mowatt et al 2023 Table 1"
+          },
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "stock_items_outside_room",
+      "group": "waste_removal",
+      "title": "Stock fewer single-use items inside patient rooms",
+      "type": "binary",
+      "impact_category": "procurement",
+      "baseline_control": {
+        "label": "Bulk single-use items stocked in each room?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Reduces unused disposables discarded after each patient",
+        "params": {
+          "percent_reduction": 4.0,
+          "category": "procurement",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "\ud83d\udce6",
+        "summary": "Keep supply carts outside patient rooms.",
+        "details_markdown": "Common Green ICU recommendation; 2\u20135 % procurement savings.",
+        "references": [
+          {
+            "label": "Mowatt et al 2023",
+            "url": "Mowatt et al 2023"
+          },
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "extend_equipment_lifespan",
+      "group": "laundry",
+      "title": "Extend product lifespans through repair and upgrade",
+      "type": "binary",
+      "impact_category": "procurement",
+      "baseline_control": {
+        "label": "No repair/upgrade program in place?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Longer lifespan lowers embodied carbon per year of use",
+        "params": {
+          "percent_reduction": 5.0,
+          "category": "procurement",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "\ud83d\udd27",
+        "summary": "Maintain and refurbish equipment instead of replacing.",
+        "details_markdown": "Approx 5 % procurement CO\u2082 savings; circular-economy principles.",
+        "references": [
+          {
+            "label": "Mowatt et al 2023 Table 1",
+            "url": "Mowatt et al 2023 Table 1"
+          },
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
+      }
+    },
+    {
       "id": "lights_night_dimming",
       "group": "infrastructure",
-      "title": "Night lighting dimming",
+      "title": "Dim ICU lighting at night",
       "type": "slider",
-      "range": { "min": 0, "max": 12, "step": 1, "unit": "hours/night" },
       "impact_category": "lighting",
+      "range": {
+        "min": 0.0,
+        "max": 12.0,
+        "step": 1.0,
+        "unit": "hours/night"
+      },
       "baseline_control": {
         "label": "Lights ON hours per night",
         "type": "number",
         "default_enabled": true,
-        "default_value": 6,
-        "min": 0, "max": 12, "step": 1, "unit": "h/night"
+        "default_value": 6.0,
+        "min": 0.0,
+        "max": 12.0,
+        "step": 1.0,
+        "unit": "h/night"
       },
       "calculation": {
         "method": "kwh_reduction",
         "formula_note": "hours * beds * 365 * kWh_per_bed_hour * grid_factor",
         "params": {
-          "kwh_per_hour_per_bed": { "source": "assumptions.energy_module.lighting.kwh_per_bed_hour" },
-          "grid_factor_source": "baseline.location.grid_factor_kg_per_kwh"
+          "kwh_per_hour_per_bed": {
+            "source": "assumptions.energy_module.lighting.kwh_per_bed_hour"
+          },
+          "grid_factor_source": {
+            "source": "baseline.location.grid_factor_kg_per_kwh"
+          }
         }
       },
       "ui": {
-        "icon": "💡",
+        "icon": "\ud83d\udca1",
         "summary": "Reduce lighting hours at night with dimming/controls.",
         "details_markdown": "Assumes linear kWh with hours off.",
         "references": []
@@ -48,22 +232,34 @@
       "group": "low_value_care",
       "title": "CRRT stewardship (reduce unnecessary hours)",
       "type": "slider",
-      "range": { "min": 0, "max": 6, "step": 0.5, "unit": "hours/patient-day" },
       "impact_category": "crrt",
+      "range": {
+        "min": 0.0,
+        "max": 6.0,
+        "step": 0.5,
+        "unit": "hours/patient-day"
+      },
       "baseline_control": {
-        "label": "CRRT hours per patient-day",
+        "label": "Average CRRT hours per patient-day",
         "type": "number",
         "default_enabled": true,
-        "default_value": 1,
-        "min": 0, "max": 24, "step": 0.5, "unit": "h/pd"
+        "default_value": 1.0,
+        "min": 0.0,
+        "max": 24.0,
+        "step": 0.5,
+        "unit": "h/pd"
       },
       "calculation": {
         "method": "intensity_per_hour",
-        "formula_note": "Δhours * kgCO2e/hour * patient-days / 1000",
-        "params": { "kg_per_hour": { "source": "assumptions.crrt.kg_co2e_per_hour" } }
+        "formula_note": "\u0394hours * kgCO2e/hour * patient-days / 1000",
+        "params": {
+          "kg_per_hour": {
+            "source": "assumptions.crrt.kg_co2e_per_hour"
+          }
+        }
       },
       "ui": {
-        "icon": "🩸",
+        "icon": "\ud83e\ude78",
         "summary": "Targeted CRRT utilization to clinical indications.",
         "details_markdown": "Local stewardship program reduces running hours.",
         "references": []
@@ -71,58 +267,77 @@
     },
     {
       "id": "eliminate_n2o",
-      "group": "respiratory",
-      "title": "Eliminate N₂O use",
+      "group": "pharmacy",
+      "title": "Eliminate N\u2082O use",
       "type": "binary",
       "impact_category": "medical_gases",
       "baseline_control": {
-        "label": "N₂O used annually (kg)",
+        "label": "N\u2082O used annually (kg)",
         "type": "number",
-        "default_enabled": true,
-        "default_value": 10,
-        "min": 0, "max": 10000, "step": 1, "unit": "kg/year"
+        "default_enabled": false,
+        "default_value": 10.0,
+        "min": 0.0,
+        "max": 10000.0,
+        "step": 1.0,
+        "unit": "kg/year"
       },
       "calculation": {
         "method": "direct_savings",
         "formula_note": "annual_kg * GWP100 / 1000",
         "params": {
-          "annual_usage_kg": { "source_value": true },
-          "gwp100": { "source": "assumptions.medical_gases.gwps_100.N2O" }
+          "annual_usage_kg": {
+            "source_value": true
+          },
+          "gwp100": {
+            "source": "assumptions.medical_gases.gwps_100.N2O"
+          }
         }
       },
       "ui": {
-        "icon": "🧪",
-        "summary": "Stop N₂O in ICU; use alternatives.",
+        "icon": "\ud83e\uddea",
+        "summary": "Stop N\u2082O in ICU; use alternatives.",
         "details_markdown": "High GWP gas; common target for elimination.",
         "references": []
       }
     },
     {
       "id": "eliminate_desflurane",
-      "group": "respiratory",
+      "group": "pharmacy",
       "title": "Eliminate desflurane",
       "type": "slider",
-      "range": { "min": 0, "max": 6000, "step": 10, "unit": "agent minutes/year" },
       "impact_category": "medical_gases",
+      "range": {
+        "min": 0.0,
+        "max": 6000.0,
+        "step": 10.0,
+        "unit": "agent minutes/year"
+      },
       "baseline_control": {
         "label": "Annual desflurane minutes",
         "type": "number",
-        "default_enabled": true,
-        "default_value": 2000,
-        "min": 0, "max": 100000, "step": 10, "unit": "min/year"
+        "default_enabled": false,
+        "default_value": 2000.0,
+        "min": 0.0,
+        "max": 100000.0,
+        "step": 10.0,
+        "unit": "min/year"
       },
       "calculation": {
         "method": "direct_savings",
-        "formula_note": "minutes*ml/min*density → kg * GWP100 / 1000",
+        "formula_note": "minutes*ml/min*density \u2192 kg * GWP100 / 1000",
         "params": {
-          "annual_agent_minutes": { "source_value": true },
+          "gwp100": {
+            "source": "assumptions.medical_gases.gwps_100.Desflurane"
+          },
+          "annual_agent_minutes": {
+            "source_value": true
+          },
           "agent_consumption_ml_per_min": 0.2,
-          "density_g_per_ml": 1.46,
-          "gwp100": { "source": "assumptions.medical_gases.gwps_100.Desflurane" }
+          "density_g_per_ml": 1.46
         }
       },
       "ui": {
-        "icon": "🌫️",
+        "icon": "\ud83c\udf2b\ufe0f",
         "summary": "Remove desflurane from formulary.",
         "details_markdown": "Use sevoflurane/IV in appropriate settings.",
         "references": []
@@ -131,26 +346,34 @@
     {
       "id": "mdi_to_nebulizer",
       "group": "respiratory",
-      "title": "Switch MDI to nebulizer when clinically appropriate",
+      "title": "Switch MDI to nebulizer whenever clinically appropriate",
       "type": "slider",
-      "range": { "min": 0, "max": 200, "step": 5, "unit": "puffs/patient-day" },
       "impact_category": "pharma",
+      "range": {
+        "min": 0.0,
+        "max": 100.0,
+        "step": 5.0,
+        "unit": "puffs/patient-day"
+      },
       "baseline_control": {
-        "label": "MDI puffs per patient-day",
+        "label": "Average MDI puffs per patient-day",
         "type": "number",
         "default_enabled": true,
-        "default_value": 20,
-        "min": 0, "max": 1000, "step": 1, "unit": "puffs/pd"
+        "default_value": 10.0,
+        "min": 0.0,
+        "max": 1000.0,
+        "step": 1.0,
+        "unit": "puffs/pd"
       },
       "calculation": {
         "method": "per_patient_day_delta",
-        "formula_note": "Δpuffs * kg/puff * patient-days / 1000",
+        "formula_note": "\u0394puffs * kg/puff * patient-days / 1000",
         "params": {
           "kg_co2e_per_puff": 0.05
         }
       },
       "ui": {
-        "icon": "💨",
+        "icon": "\ud83d\udca8",
         "summary": "Propellants in MDIs have non-trivial GWP.",
         "details_markdown": "Where safe & effective, prefer nebulizers or DPIs.",
         "references": []
@@ -161,26 +384,34 @@
       "group": "respiratory",
       "title": "Shift to reusable bronchoscopes",
       "type": "slider",
-      "range": { "min": 0, "max": 100, "step": 5, "unit": "% reusable" },
       "impact_category": "procurement",
+      "range": {
+        "min": 0.0,
+        "max": 100.0,
+        "step": 5.0,
+        "unit": "% reusable"
+      },
       "baseline_control": {
-        "label": "% reusable bronchoscopes baseline",
+        "label": "% reusable bronchoscopes at baseline",
         "type": "number",
         "default_enabled": true,
-        "default_value": 20,
-        "min": 0, "max": 100, "step": 5, "unit": "%"
+        "default_value": 20.0,
+        "min": 0.0,
+        "max": 100.0,
+        "step": 5.0,
+        "unit": "%"
       },
       "calculation": {
         "method": "percent_of_category",
         "formula_note": "Simplified % reduction of procurement slice",
         "params": {
-          "percent_reduction": 5,
+          "percent_reduction": 5.0,
           "category": "procurement",
           "scale_with_value_pct": true
         }
       },
       "ui": {
-        "icon": "🔁",
+        "icon": "\ud83d\udd01",
         "summary": "Reusable devices reduce manufacturing/waste impacts.",
         "details_markdown": "Assumes linear savings with % reusable.",
         "references": []
@@ -191,115 +422,74 @@
       "group": "laundry",
       "title": "Switch to reusable isolation gowns",
       "type": "slider",
-      "range": { "min": 0, "max": 100, "step": 5, "unit": "% single-use" },
       "impact_category": "procurement",
+      "range": {
+        "min": 0.0,
+        "max": 100.0,
+        "step": 5.0,
+        "unit": "% single-use"
+      },
       "baseline_control": {
-        "label": "% single-use gowns baseline",
+        "label": "% single-use gowns at baseline",
         "type": "number",
         "default_enabled": true,
-        "default_value": 80,
-        "min": 0, "max": 100, "step": 5, "unit": "%"
+        "default_value": 80.0,
+        "min": 0.0,
+        "max": 100.0,
+        "step": 5.0,
+        "unit": "%"
       },
       "calculation": {
         "method": "percent_of_category",
         "formula_note": "Reduce procurement slice proportional to reduction in disposables",
         "params": {
-          "percent_reduction": 10,
+          "percent_reduction": 10.0,
           "category": "procurement",
           "scale_with_value_pct": true
         }
       },
       "ui": {
-        "icon": "🧥",
+        "icon": "\ud83e\udde5",
         "summary": "Textile gowns laundered & reused; lower embodied carbon.",
         "details_markdown": "Assumes infrastructure supports reusable workflow.",
         "references": []
       }
     },
     {
-      "id": "plant_based_foods",
-      "group": "nutrition",
-      "title": "Increase plant-based foods",
-      "type": "slider",
-      "range": { "min": 0, "max": 100, "step": 5, "unit": "% meals plant-based" },
-      "impact_category": "procurement",
-      "baseline_control": {
-        "label": "% meals plant-based baseline",
-        "type": "number",
-        "default_enabled": true,
-        "default_value": 20,
-        "min": 0, "max": 100, "step": 5, "unit": "%"
-      },
-      "calculation": {
-        "method": "percent_of_category",
-        "formula_note": "Reduce procurement proportional to plant-based adoption",
-        "params": {
-          "percent_reduction": 5,
-          "category": "procurement",
-          "scale_with_value_pct": true
-        }
-      },
-      "ui": {
-        "icon": "🥗",
-        "summary": "Shift menus for patients/staff toward plant-forward options.",
-        "details_markdown": "Simplified percent reduction applied to procurement.",
-        "references": []
-      }
-    },
-    {
       "id": "disposable_stethoscopes",
       "group": "respiratory",
-      "title": "Eliminate disposable stethoscopes (move to reusable)",
+      "title": "Eliminate disposable stethoscopes (clean reusable stethoscopes instead)",
       "type": "slider",
-      "range": { "min": 0, "max": 100, "step": 5, "unit": "% reusable" },
       "impact_category": "procurement",
+      "range": {
+        "min": 0.0,
+        "max": 100.0,
+        "step": 5.0,
+        "unit": "% reusable"
+      },
       "baseline_control": {
         "label": "% reusable stethoscopes baseline",
         "type": "number",
         "default_enabled": true,
-        "default_value": 0,
-        "min": 0, "max": 100, "step": 5, "unit": "%"
+        "default_value": 0.0,
+        "min": 0.0,
+        "max": 100.0,
+        "step": 5.0,
+        "unit": "%"
       },
       "calculation": {
         "method": "percent_of_category",
         "formula_note": "Assume linear reduction in procurement with % shift to reusable",
         "params": {
-          "percent_reduction": 2,
+          "percent_reduction": 2.0,
           "category": "procurement",
           "scale_with_value_pct": true
         }
       },
       "ui": {
-        "icon": "🩺",
+        "icon": "\ud83e\ude7a",
         "summary": "Use reusable stethoscopes to cut single-use plastics/metals.",
         "details_markdown": "Small but simple change; savings scale with adoption.",
-        "references": []
-      }
-    },
-    {
-      "id": "segregate_biohazard_waste",
-      "group": "waste_removal",
-      "title": "Use biohazard (red bag) waste only for blood-soiled items",
-      "type": "binary",
-      "impact_category": "waste",
-      "baseline_control": {
-        "label": "Overuse of biohazard bags at baseline?",
-        "type": "boolean",
-        "default_enabled": true
-      },
-      "calculation": {
-        "method": "percent_of_category",
-        "formula_note": "Better segregation reduces red-bag volume and treatment emissions",
-        "params": {
-          "percent_reduction": 15,
-          "category": "waste",
-          "scale_with_value_pct": false
-        }
-      },
-      "ui": {
-        "icon": "🗑️",
-        "summary": "Right-size red-bag usage to cut incineration and transport.",
-        "details_markdown": "Training + signage; audits sustain practice.",
         "references": []
       }
     },
@@ -310,7 +500,7 @@
       "type": "binary",
       "impact_category": "procurement",
       "baseline_control": {
-        "label": "Standardized goals-of-care on admission in place?",
+        "label": "Are goals-of-care discussed on admission with all patients?",
         "type": "boolean",
         "default_enabled": true
       },
@@ -318,13 +508,13 @@
         "method": "percent_of_category",
         "formula_note": "Proxy: lower low-value utilization reduces resource use",
         "params": {
-          "percent_reduction": 5,
+          "percent_reduction": 5.0,
           "category": "procurement",
           "scale_with_value_pct": false
         }
       },
       "ui": {
-        "icon": "🗣️",
+        "icon": "\ud83d\udde3\ufe0f",
         "summary": "Earlier alignment may avert non-beneficial interventions.",
         "details_markdown": "Hard to quantify precisely; conservative 5% proxy.",
         "references": []
@@ -337,7 +527,7 @@
       "type": "binary",
       "impact_category": "procurement",
       "baseline_control": {
-        "label": "High central line use baseline?",
+        "label": "Are central lines used for patients on low dose vasopressors?",
         "type": "boolean",
         "default_enabled": true
       },
@@ -345,13 +535,13 @@
         "method": "percent_of_category",
         "formula_note": "Reduce central line kits/consumables & complications",
         "params": {
-          "percent_reduction": 4,
+          "percent_reduction": 4.0,
           "category": "procurement",
           "scale_with_value_pct": false
         }
       },
       "ui": {
-        "icon": "🧷",
+        "icon": "\ud83e\uddf7",
         "summary": "Peripheral use (when appropriate) lowers device consumption.",
         "details_markdown": "Clinical safety first; small but real savings.",
         "references": []
@@ -362,87 +552,116 @@
       "group": "pharmacy",
       "title": "Switch eligible IV medications to oral",
       "type": "slider",
-      "range": { "min": 0, "max": 100, "step": 5, "unit": "% eligible switched" },
       "impact_category": "pharma",
+      "range": {
+        "min": 0.0,
+        "max": 100.0,
+        "step": 5.0,
+        "unit": "% eligible switched"
+      },
       "baseline_control": {
-        "label": "% IV (of eligible) at baseline",
+        "label": "% PO eligible meds given IV as baseline?",
         "type": "number",
         "default_enabled": true,
-        "default_value": 60,
-        "min": 0, "max": 100, "step": 5, "unit": "%"
+        "default_value": 60.0,
+        "min": 0.0,
+        "max": 100.0,
+        "step": 5.0,
+        "unit": "%"
       },
       "calculation": {
         "method": "percent_of_category",
         "formula_note": "% reduction applied to pharma category proportional to adoption",
         "params": {
-          "percent_reduction": 8,
+          "percent_reduction": 8.0,
           "category": "pharma",
           "scale_with_value_pct": true
         }
       },
       "ui": {
-        "icon": "💊",
+        "icon": "\ud83d\udc8a",
         "summary": "Oral formulations often have lower packaging and prep load.",
         "details_markdown": "Scope to meds with equivalent efficacy/bioavailability.",
         "references": []
       }
-    },  
+    },
     {
       "id": "switch_to_led",
       "group": "infrastructure",
-      "title": "Switch from incandescent/halogen to LED lighting",
-      "type": "slider",
-      "range": { "min": 0, "max": 12, "step": 1, "unit": "hours/day affected" },
-      "impact_category": "lighting",
+      "title": "Upgrade from incandescent/halogen to LED lighting",
+      "type": "binary",
+      "impact_category": "energy_hvac",
       "baseline_control": {
         "label": "Daytime artificial lighting hours",
         "type": "number",
         "default_enabled": true,
-        "default_value": 6,
-        "min": 0,
-        "max": 12,
-        "step": 1,
+        "default_value": 6.0,
+        "min": 0.0,
+        "max": 12.0,
+        "step": 1.0,
         "unit": "h/day"
       },
       "calculation": {
-        "method": "kwh_reduction",
-        "formula_note": "hours/day * beds * 365 * (kWh/bed·hour saved with LED) * local grid factor",
+        "method": "percent_of_category",
+        "formula_note": "LED retrofit reduces lighting energy use by ~70\u201380 %, approximated as 15 % of total lighting category.",
         "params": {
           "kwh_per_hour_per_bed": 0.014,
-          "grid_factor_source": "baseline.location.grid_factor_kg_per_kwh"
+          "grid_factor_source": {
+            "source": "baseline.location.grid_factor_kg_per_kwh"
+          },
+          "percent_reduction": 5,
+          "category": "energy_hvac",
+          "scale_with_value_pct": false
         }
       },
       "ui": {
-        "icon": "💡",
+        "icon": "\ud83d\udca1",
         "summary": "LED retrofit reduces lighting electricity substantially.",
-        "details_markdown": "Assumes ~70% wattage reduction vs incandescent/halogen. Slide the hours/day of lighting affected.",
-        "references": []
+        "details_markdown": "Binary toggle: enables ~15% reduction in lighting energy use (\u224870% lamp efficiency gain).",
+        "references": [
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
       }
     },
     {
       "id": "use_natural_daylight",
       "group": "infrastructure",
-      "title": "Use natural daylight (shades up) during the day",
+      "title": "Use natural daylight (e.g. shades up) during the day",
       "type": "slider",
-      "range": { "min": 0, "max": 8, "step": 1, "unit": "hours/day" },
       "impact_category": "lighting",
+      "range": {
+        "min": 0.0,
+        "max": 8.0,
+        "step": 1.0,
+        "unit": "hours/day"
+      },
       "baseline_control": {
         "label": "Daytime artificial lighting hours",
         "type": "number",
         "default_enabled": true,
-        "default_value": 6,
-        "min": 0, "max": 12, "step": 1, "unit": "h/day"
+        "default_value": 6.0,
+        "min": 0.0,
+        "max": 12.0,
+        "step": 1.0,
+        "unit": "h/day"
       },
       "calculation": {
         "method": "kwh_reduction",
         "formula_note": "hours_off * beds * 365 * kWh_per_bed_hour * local grid factor",
         "params": {
-          "kwh_per_hour_per_bed": { "source": "assumptions.energy_module.lighting.kwh_per_bed_hour" },
-          "grid_factor_source": "baseline.location.grid_factor_kg_per_kwh"
+          "kwh_per_hour_per_bed": {
+            "source": "assumptions.energy_module.lighting.kwh_per_bed_hour"
+          },
+          "grid_factor_source": {
+            "source": "baseline.location.grid_factor_kg_per_kwh"
+          }
         }
       },
       "ui": {
-        "icon": "🌞",
+        "icon": "\ud83c\udf1e",
         "summary": "Daylight harvesting: turn off lights when sunlit.",
         "details_markdown": "Pair with occupancy/daylight sensors for best effect.",
         "references": []
@@ -451,7 +670,7 @@
     {
       "id": "improved_insulation",
       "group": "infrastructure",
-      "title": "Improve building envelope/insulation",
+      "title": "Improve building insulation",
       "type": "binary",
       "impact_category": "energy_hvac",
       "baseline_control": {
@@ -463,13 +682,13 @@
         "method": "percent_of_category",
         "formula_note": "Reduced HVAC loads via insulation upgrades",
         "params": {
-          "percent_reduction": 10,
+          "percent_reduction": 10.0,
           "category": "energy_hvac",
           "scale_with_value_pct": false
         }
       },
       "ui": {
-        "icon": "🏠",
+        "icon": "\ud83c\udfe0",
         "summary": "Insulation/air sealing lowers heating and cooling demand.",
         "details_markdown": "Commissioning + envelope improvements.",
         "references": []
@@ -480,8 +699,13 @@
       "group": "infrastructure",
       "title": "Demand-controlled or variable-air-volume ventilation",
       "type": "slider",
-      "range": { "min": 0, "max": 30, "step": 1, "unit": "% HVAC reduction" },
       "impact_category": "energy_hvac",
+      "range": {
+        "min": 0.0,
+        "max": 30.0,
+        "step": 1.0,
+        "unit": "% HVAC reduction"
+      },
       "baseline_control": {
         "label": "Fixed high ventilation baseline?",
         "type": "boolean",
@@ -489,18 +713,343 @@
       },
       "calculation": {
         "method": "percent_of_category",
-        "formula_note": "Reduce HVAC energy by slider %",
+        "formula_note": "Reduce HVAC energy proportionally to slider (1% per %).",
         "params": {
-          "percent_reduction": { "source_value": true },
+          "percent_reduction": 1.0,
+          "category": "energy_hvac",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "\ud83c\udf2c\ufe0f",
+        "summary": "Match ventilation to occupancy/CO\u2082; save fan & conditioning energy.",
+        "details_markdown": "Controls and policy changes required.",
+        "references": []
+      }
+    },
+    {
+      "id": "reduce_unnecessary_admissions",
+      "group": "low_value_care",
+      "title": "Avoid unnecessary ICU admissions through accurate triage",
+      "type": "binary",
+      "impact_category": "energy_hvac",
+      "baseline_control": {
+        "label": "Admits all borderline cases at baseline?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Reducing inappropriate ICU use lowers total bed-days and energy demand",
+        "params": {
+          "percent_reduction": 8.0,
           "category": "energy_hvac",
           "scale_with_value_pct": false
         }
       },
       "ui": {
-        "icon": "🌬️",
-        "summary": "Match ventilation to occupancy/CO₂; save fan & conditioning energy.",
-        "details_markdown": "Controls and policy changes required.",
-        "references": []
+        "icon": "\ud83d\udeaa",
+        "summary": "Smarter triage reduces overall ICU bed-days.",
+        "details_markdown": "Based on estimates that 5\u201310% of ICU admissions are potentially avoidable (Mowatt et al., 2023).",
+        "references": [
+          {
+            "label": "Mowatt et al., 2023 J Intensive Care Soc 24(9):463\u2013474",
+            "url": "Mowatt et al., 2023 J Intensive Care Soc 24(9):463\u2013474"
+          },
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "avoid_overdiagnosis",
+      "group": "low_value_care",
+      "title": "Avoid over-investigation and routine testing",
+      "type": "binary",
+      "impact_category": "procurement",
+      "baseline_control": {
+        "label": "Daily routine labs/imaging performed?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Less single-use consumables, syringes, and reagents",
+        "params": {
+          "percent_reduction": 5.0,
+          "category": "procurement",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "\ud83e\uddea",
+        "summary": "Eliminate routine daily labs & imaging without indication.",
+        "details_markdown": "Consistent with \u2018Choosing Wisely\u2019 ICU recommendations; Mowatt et al. 2023.",
+        "references": [
+          {
+            "label": "Mowatt et al., 2023 J Intensive Care Soc",
+            "url": "Mowatt et al., 2023 J Intensive Care Soc"
+          },
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "avoid_overoxygenation",
+      "group": "respiratory",
+      "title": "Avoid over-use of supplemental oxygen",
+      "type": "slider",
+      "impact_category": "medical_gases",
+      "range": {
+        "min": 0.0,
+        "max": 20.0,
+        "step": 1.0,
+        "unit": "% reduction in O\u2082 flow"
+      },
+      "baseline_control": {
+        "label": "O\u2082 flow > necessary at baseline?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Industrial oxygen production has ~0.5 kg CO\u2082 per m\u00b3; reductions scale linearly",
+        "params": {
+          "category": "medical_gases",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "\ud83c\udf2c\ufe0f",
+        "summary": "Target SpO\u2082 to avoid excess flow and waste.",
+        "details_markdown": "Small but real energy savings; aligns with evidence-based oxygen targets.",
+        "references": [
+          {
+            "label": "Mowatt et al., 2023 Table 1",
+            "url": "Mowatt et al., 2023 Table 1"
+          },
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reduce_overuse_prophylaxis",
+      "group": "pharmacy",
+      "title": "Avoid routine prophylaxis (e.g., PPIs) for low-risk patients",
+      "type": "binary",
+      "impact_category": "pharma",
+      "baseline_control": {
+        "label": "Is GI prophylaxis routinely used in low risk patients?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Less unnecessary medication use \u2192 smaller pharmaceutical footprint",
+        "params": {
+          "percent_reduction": 3.0,
+          "category": "pharma",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "\ud83d\udc89",
+        "summary": "Target prophylaxis to those who benefit.",
+        "details_markdown": "Conservative estimate \u22483% pharma reduction; Mowatt et al., 2023.",
+        "references": [
+          {
+            "label": "Mowatt et al., 2023 J Intensive Care Soc",
+            "url": "Mowatt et al., 2023 J Intensive Care Soc"
+          },
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "plant_based_foods",
+      "group": "nutrition",
+      "title": "Increase plant-based foods for patients and staff",
+      "type": "slider",
+      "impact_category": "procurement",
+      "range": {
+        "min": 0.0,
+        "max": 100.0,
+        "step": 5.0,
+        "unit": "% meals plant-based"
+      },
+      "baseline_control": {
+        "label": "% meals plant-based baseline",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 20.0,
+        "min": 0.0,
+        "max": 100.0,
+        "step": 5.0,
+        "unit": "%"
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Reduce procurement proportional to plant-based adoption",
+        "params": {
+          "percent_reduction": 5.0,
+          "category": "procurement",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "\ud83e\udd57",
+        "summary": "Shift menus for patients/staff toward plant-forward options.",
+        "details_markdown": "Plant-based diets cut agricultural methane and land-use emissions.",
+        "references": [
+          {
+            "label": "Mowatt et al 2023",
+            "url": "Mowatt et al 2023"
+          },
+          {
+            "label": "Poore & Nemecek, Science 2018",
+            "url": "Poore & Nemecek, Science 2018"
+          },
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "segregate_biohazard_waste",
+      "group": "waste_removal",
+      "title": "Use biohazard waste only for visibly blood-soiled items",
+      "type": "binary",
+      "impact_category": "waste",
+      "baseline_control": {
+        "label": "Are biohazard bags used for most waste?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Better segregation reduces red-bag volume and treatment emissions",
+        "params": {
+          "percent_reduction": 15.0,
+          "category": "waste",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "\ud83d\uddd1\ufe0f",
+        "summary": "Right-size red-bag usage to cut incineration and transport.",
+        "details_markdown": "Training and audits can maintain compliance and reduce red-bag waste by up to 20%.",
+        "references": [
+          {
+            "label": "Mowatt et al 2023",
+            "url": "Mowatt et al 2023"
+          },
+          {
+            "label": "Sherman et al 2020 J Hosp Med",
+            "url": "Sherman et al 2020 J Hosp Med"
+          },
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "avoid_overoxygenation_fine",
+      "group": "respiratory",
+      "title": "Titrate oxygen to target range (avoid over-oxygenation)",
+      "type": "slider",
+      "impact_category": "medical_gases",
+      "range": {
+        "min": 0.0,
+        "max": 20.0,
+        "step": 1.0,
+        "unit": "% O\u2082 reduction"
+      },
+      "baseline_control": {
+        "label": "Is excess O\u2082 used above a physiologic target? What percent excess?",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 10.0,
+        "min": 0.0,
+        "max": 20.0,
+        "step": 1.0,
+        "unit": "%"
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "~1\u20133 % GHG reduction per 10 % O\u2082 flow reduction; linear scaling",
+        "params": {
+          "percent_reduction": 2.0,
+          "category": "medical_gases",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "\ud83c\udf2c\ufe0f",
+        "summary": "Titrate FiO\u2082 to target; reduces industrial oxygen use.",
+        "details_markdown": "Linear effect: 10 % less flow \u2248 2 % GHG savings from oxygen production.",
+        "references": [
+          {
+            "label": "Mowatt et al 2023",
+            "url": "Mowatt et al 2023"
+          },
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "moderate_temp_setpoint",
+      "group": "infrastructure",
+      "title": "Relax temperature set-point by 1\u20133\u00b0C",
+      "type": "slider",
+      "impact_category": "energy_hvac",
+      "range": {
+        "min": 0.0,
+        "max": 3.0,
+        "step": 0.5,
+        "unit": "\u00b0C change"
+      },
+      "baseline_control": {
+        "label": "Strict 21 \u00b0C temperature maintained year-round?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "\u22483% HVAC energy reduction per \u00b0C set-point moderation (US DOE)",
+        "params": {
+          "percent_reduction": 3.0,
+          "category": "energy_hvac",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "\ud83c\udf21\ufe0f",
+        "summary": "Each \u00b0C shift saves ~3% of HVAC energy use.",
+        "details_markdown": "Linear scaling: 1 \u00b0C \u2248 3 %, 3 \u00b0C \u2248 9 %. Based on DOE/ASHRAE data.",
+        "references": [
+          {
+            "label": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10515098/"
+          }
+        ]
       }
     }
   ]
