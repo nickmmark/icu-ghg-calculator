@@ -1,0 +1,507 @@
+{
+  "equivalency_coeffs": {
+    "cars_per_tCO2e": 0.45,
+    "acres_forest_per_tCO2e": 0.06,
+    "tree_seedlings_10yr_per_tCO2e": 7.0
+  },
+  "groups": [
+    { "id": "infrastructure", "label": "Infrastructure", "icon": "🏗️" },
+    { "id": "pharmacy", "label": "Pharmacy", "icon": "💊" },
+    { "id": "respiratory", "label": "Respiratory", "icon": "🫁" },
+    { "id": "low_value_care", "label": "Low-value care", "icon": "🧭" },
+    { "id": "nutrition", "label": "Nutrition", "icon": "🥗" },
+    { "id": "laundry", "label": "Laundry & Reuse", "icon": "🧺" },
+    { "id": "waste_removal", "label": "Waste Removal", "icon": "🗑️" }
+  ],
+  "interventions": [
+    {
+      "id": "lights_night_dimming",
+      "group": "infrastructure",
+      "title": "Night lighting dimming",
+      "type": "slider",
+      "range": { "min": 0, "max": 12, "step": 1, "unit": "hours/night" },
+      "impact_category": "lighting",
+      "baseline_control": {
+        "label": "Lights ON hours per night",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 6,
+        "min": 0, "max": 12, "step": 1, "unit": "h/night"
+      },
+      "calculation": {
+        "method": "kwh_reduction",
+        "formula_note": "hours * beds * 365 * kWh_per_bed_hour * grid_factor",
+        "params": {
+          "kwh_per_hour_per_bed": { "source": "assumptions.energy_module.lighting.kwh_per_bed_hour" },
+          "grid_factor_source": "baseline.location.grid_factor_kg_per_kwh"
+        }
+      },
+      "ui": {
+        "icon": "💡",
+        "summary": "Reduce lighting hours at night with dimming/controls.",
+        "details_markdown": "Assumes linear kWh with hours off.",
+        "references": []
+      }
+    },
+    {
+      "id": "crrt_stewardship",
+      "group": "low_value_care",
+      "title": "CRRT stewardship (reduce unnecessary hours)",
+      "type": "slider",
+      "range": { "min": 0, "max": 6, "step": 0.5, "unit": "hours/patient-day" },
+      "impact_category": "crrt",
+      "baseline_control": {
+        "label": "CRRT hours per patient-day",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 1,
+        "min": 0, "max": 24, "step": 0.5, "unit": "h/pd"
+      },
+      "calculation": {
+        "method": "intensity_per_hour",
+        "formula_note": "Δhours * kgCO2e/hour * patient-days / 1000",
+        "params": { "kg_per_hour": { "source": "assumptions.crrt.kg_co2e_per_hour" } }
+      },
+      "ui": {
+        "icon": "🩸",
+        "summary": "Targeted CRRT utilization to clinical indications.",
+        "details_markdown": "Local stewardship program reduces running hours.",
+        "references": []
+      }
+    },
+    {
+      "id": "eliminate_n2o",
+      "group": "respiratory",
+      "title": "Eliminate N₂O use",
+      "type": "binary",
+      "impact_category": "medical_gases",
+      "baseline_control": {
+        "label": "N₂O used annually (kg)",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 10,
+        "min": 0, "max": 10000, "step": 1, "unit": "kg/year"
+      },
+      "calculation": {
+        "method": "direct_savings",
+        "formula_note": "annual_kg * GWP100 / 1000",
+        "params": {
+          "annual_usage_kg": { "source_value": true },
+          "gwp100": { "source": "assumptions.medical_gases.gwps_100.N2O" }
+        }
+      },
+      "ui": {
+        "icon": "🧪",
+        "summary": "Stop N₂O in ICU; use alternatives.",
+        "details_markdown": "High GWP gas; common target for elimination.",
+        "references": []
+      }
+    },
+    {
+      "id": "eliminate_desflurane",
+      "group": "respiratory",
+      "title": "Eliminate desflurane",
+      "type": "slider",
+      "range": { "min": 0, "max": 6000, "step": 10, "unit": "agent minutes/year" },
+      "impact_category": "medical_gases",
+      "baseline_control": {
+        "label": "Annual desflurane minutes",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 2000,
+        "min": 0, "max": 100000, "step": 10, "unit": "min/year"
+      },
+      "calculation": {
+        "method": "direct_savings",
+        "formula_note": "minutes*ml/min*density → kg * GWP100 / 1000",
+        "params": {
+          "annual_agent_minutes": { "source_value": true },
+          "agent_consumption_ml_per_min": 0.2,
+          "density_g_per_ml": 1.46,
+          "gwp100": { "source": "assumptions.medical_gases.gwps_100.Desflurane" }
+        }
+      },
+      "ui": {
+        "icon": "🌫️",
+        "summary": "Remove desflurane from formulary.",
+        "details_markdown": "Use sevoflurane/IV in appropriate settings.",
+        "references": []
+      }
+    },
+    {
+      "id": "mdi_to_nebulizer",
+      "group": "respiratory",
+      "title": "Switch MDI to nebulizer when clinically appropriate",
+      "type": "slider",
+      "range": { "min": 0, "max": 200, "step": 5, "unit": "puffs/patient-day" },
+      "impact_category": "pharma",
+      "baseline_control": {
+        "label": "MDI puffs per patient-day",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 20,
+        "min": 0, "max": 1000, "step": 1, "unit": "puffs/pd"
+      },
+      "calculation": {
+        "method": "per_patient_day_delta",
+        "formula_note": "Δpuffs * kg/puff * patient-days / 1000",
+        "params": {
+          "kg_co2e_per_puff": 0.05
+        }
+      },
+      "ui": {
+        "icon": "💨",
+        "summary": "Propellants in MDIs have non-trivial GWP.",
+        "details_markdown": "Where safe & effective, prefer nebulizers or DPIs.",
+        "references": []
+      }
+    },
+    {
+      "id": "reusable_bronchoscopy",
+      "group": "respiratory",
+      "title": "Shift to reusable bronchoscopes",
+      "type": "slider",
+      "range": { "min": 0, "max": 100, "step": 5, "unit": "% reusable" },
+      "impact_category": "procurement",
+      "baseline_control": {
+        "label": "% reusable bronchoscopes baseline",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 20,
+        "min": 0, "max": 100, "step": 5, "unit": "%"
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Simplified % reduction of procurement slice",
+        "params": {
+          "percent_reduction": 5,
+          "category": "procurement",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "🔁",
+        "summary": "Reusable devices reduce manufacturing/waste impacts.",
+        "details_markdown": "Assumes linear savings with % reusable.",
+        "references": []
+      }
+    },
+    {
+      "id": "reusable_gowns",
+      "group": "laundry",
+      "title": "Switch to reusable isolation gowns",
+      "type": "slider",
+      "range": { "min": 0, "max": 100, "step": 5, "unit": "% single-use" },
+      "impact_category": "procurement",
+      "baseline_control": {
+        "label": "% single-use gowns baseline",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 80,
+        "min": 0, "max": 100, "step": 5, "unit": "%"
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Reduce procurement slice proportional to reduction in disposables",
+        "params": {
+          "percent_reduction": 10,
+          "category": "procurement",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "🧥",
+        "summary": "Textile gowns laundered & reused; lower embodied carbon.",
+        "details_markdown": "Assumes infrastructure supports reusable workflow.",
+        "references": []
+      }
+    },
+    {
+      "id": "plant_based_foods",
+      "group": "nutrition",
+      "title": "Increase plant-based foods",
+      "type": "slider",
+      "range": { "min": 0, "max": 100, "step": 5, "unit": "% meals plant-based" },
+      "impact_category": "procurement",
+      "baseline_control": {
+        "label": "% meals plant-based baseline",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 20,
+        "min": 0, "max": 100, "step": 5, "unit": "%"
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Reduce procurement proportional to plant-based adoption",
+        "params": {
+          "percent_reduction": 5,
+          "category": "procurement",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "🥗",
+        "summary": "Shift menus for patients/staff toward plant-forward options.",
+        "details_markdown": "Simplified percent reduction applied to procurement.",
+        "references": []
+      }
+    },
+    {
+      "id": "disposable_stethoscopes",
+      "group": "respiratory",
+      "title": "Eliminate disposable stethoscopes (move to reusable)",
+      "type": "slider",
+      "range": { "min": 0, "max": 100, "step": 5, "unit": "% reusable" },
+      "impact_category": "procurement",
+      "baseline_control": {
+        "label": "% reusable stethoscopes baseline",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 0,
+        "min": 0, "max": 100, "step": 5, "unit": "%"
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Assume linear reduction in procurement with % shift to reusable",
+        "params": {
+          "percent_reduction": 2,
+          "category": "procurement",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "🩺",
+        "summary": "Use reusable stethoscopes to cut single-use plastics/metals.",
+        "details_markdown": "Small but simple change; savings scale with adoption.",
+        "references": []
+      }
+    },
+    {
+      "id": "segregate_biohazard_waste",
+      "group": "waste_removal",
+      "title": "Use biohazard (red bag) waste only for blood-soiled items",
+      "type": "binary",
+      "impact_category": "waste",
+      "baseline_control": {
+        "label": "Overuse of biohazard bags at baseline?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Better segregation reduces red-bag volume and treatment emissions",
+        "params": {
+          "percent_reduction": 15,
+          "category": "waste",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "🗑️",
+        "summary": "Right-size red-bag usage to cut incineration and transport.",
+        "details_markdown": "Training + signage; audits sustain practice.",
+        "references": []
+      }
+    },
+    {
+      "id": "goals_of_care_discussion",
+      "group": "low_value_care",
+      "title": "Discuss goals of care on all admissions",
+      "type": "binary",
+      "impact_category": "procurement",
+      "baseline_control": {
+        "label": "Standardized goals-of-care on admission in place?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Proxy: lower low-value utilization reduces resource use",
+        "params": {
+          "percent_reduction": 5,
+          "category": "procurement",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "🗣️",
+        "summary": "Earlier alignment may avert non-beneficial interventions.",
+        "details_markdown": "Hard to quantify precisely; conservative 5% proxy.",
+        "references": []
+      }
+    },
+    {
+      "id": "peripheral_vasopressors",
+      "group": "low_value_care",
+      "title": "Use peripheral vasopressors when safe instead of central lines",
+      "type": "binary",
+      "impact_category": "procurement",
+      "baseline_control": {
+        "label": "High central line use baseline?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Reduce central line kits/consumables & complications",
+        "params": {
+          "percent_reduction": 4,
+          "category": "procurement",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "🧷",
+        "summary": "Peripheral use (when appropriate) lowers device consumption.",
+        "details_markdown": "Clinical safety first; small but real savings.",
+        "references": []
+      }
+    },
+    {
+      "id": "switch_iv_to_oral",
+      "group": "pharmacy",
+      "title": "Switch eligible IV medications to oral",
+      "type": "slider",
+      "range": { "min": 0, "max": 100, "step": 5, "unit": "% eligible switched" },
+      "impact_category": "pharma",
+      "baseline_control": {
+        "label": "% IV (of eligible) at baseline",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 60,
+        "min": 0, "max": 100, "step": 5, "unit": "%"
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "% reduction applied to pharma category proportional to adoption",
+        "params": {
+          "percent_reduction": 8,
+          "category": "pharma",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "💊",
+        "summary": "Oral formulations often have lower packaging and prep load.",
+        "details_markdown": "Scope to meds with equivalent efficacy/bioavailability.",
+        "references": []
+      }
+    },  
+    {
+      "id": "switch_to_led",
+      "group": "infrastructure",
+      "title": "Switch from incandescent/halogen to LED lighting",
+      "type": "slider",
+      "range": { "min": 0, "max": 12, "step": 1, "unit": "hours/day affected" },
+      "impact_category": "lighting",
+      "baseline_control": {
+        "label": "Daytime artificial lighting hours",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 6,
+        "min": 0,
+        "max": 12,
+        "step": 1,
+        "unit": "h/day"
+      },
+      "calculation": {
+        "method": "kwh_reduction",
+        "formula_note": "hours/day * beds * 365 * (kWh/bed·hour saved with LED) * local grid factor",
+        "params": {
+          "kwh_per_hour_per_bed": 0.014,
+          "grid_factor_source": "baseline.location.grid_factor_kg_per_kwh"
+        }
+      },
+      "ui": {
+        "icon": "💡",
+        "summary": "LED retrofit reduces lighting electricity substantially.",
+        "details_markdown": "Assumes ~70% wattage reduction vs incandescent/halogen. Slide the hours/day of lighting affected.",
+        "references": []
+      }
+    },
+    {
+      "id": "use_natural_daylight",
+      "group": "infrastructure",
+      "title": "Use natural daylight (shades up) during the day",
+      "type": "slider",
+      "range": { "min": 0, "max": 8, "step": 1, "unit": "hours/day" },
+      "impact_category": "lighting",
+      "baseline_control": {
+        "label": "Daytime artificial lighting hours",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 6,
+        "min": 0, "max": 12, "step": 1, "unit": "h/day"
+      },
+      "calculation": {
+        "method": "kwh_reduction",
+        "formula_note": "hours_off * beds * 365 * kWh_per_bed_hour * local grid factor",
+        "params": {
+          "kwh_per_hour_per_bed": { "source": "assumptions.energy_module.lighting.kwh_per_bed_hour" },
+          "grid_factor_source": "baseline.location.grid_factor_kg_per_kwh"
+        }
+      },
+      "ui": {
+        "icon": "🌞",
+        "summary": "Daylight harvesting: turn off lights when sunlit.",
+        "details_markdown": "Pair with occupancy/daylight sensors for best effect.",
+        "references": []
+      }
+    },
+    {
+      "id": "improved_insulation",
+      "group": "infrastructure",
+      "title": "Improve building envelope/insulation",
+      "type": "binary",
+      "impact_category": "energy_hvac",
+      "baseline_control": {
+        "label": "Suboptimal insulation baseline?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Reduced HVAC loads via insulation upgrades",
+        "params": {
+          "percent_reduction": 10,
+          "category": "energy_hvac",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "🏠",
+        "summary": "Insulation/air sealing lowers heating and cooling demand.",
+        "details_markdown": "Commissioning + envelope improvements.",
+        "references": []
+      }
+    },
+    {
+      "id": "demand_control_ventilation",
+      "group": "infrastructure",
+      "title": "Demand-controlled or variable-air-volume ventilation",
+      "type": "slider",
+      "range": { "min": 0, "max": 30, "step": 1, "unit": "% HVAC reduction" },
+      "impact_category": "energy_hvac",
+      "baseline_control": {
+        "label": "Fixed high ventilation baseline?",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Reduce HVAC energy by slider %",
+        "params": {
+          "percent_reduction": { "source_value": true },
+          "category": "energy_hvac",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "🌬️",
+        "summary": "Match ventilation to occupancy/CO₂; save fan & conditioning energy.",
+        "details_markdown": "Controls and policy changes required.",
+        "references": []
+      }
+    }
+  ]
+}

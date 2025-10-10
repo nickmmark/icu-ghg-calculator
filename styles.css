@@ -1,0 +1,138 @@
+:root{
+  /* Light, optimistic palette */
+  --bg:#f7fbff;
+  --card:#ffffff;
+  --muted:#e9f0f6;
+  --text:#0c1b2a;
+  --sub:#46627a;
+  --accent:#0ea5e9;    /* sky */
+  --accent-2:#22c55e;  /* green */
+  --border:#d7e4ee;
+  --shadow: 0 10px 30px rgba(15, 23, 42, .08);
+  --radius: 18px;
+
+  --energy:#38bdf8;     /* Energy/HVAC */
+  --procure:#a78bfa;    /* Procurement */
+  --pharma:#f59e0b;     /* Pharma */
+  --gases:#f472b6;      /* Gases */
+  --waste:#84cc16;      /* Waste */
+  --water:#2dd4bf;      /* Water/Other */
+  --lighting:#60a5fa;   /* Lighting */
+  --crrt:#34d399;       /* CRRT */
+  --save:#22c55e;       /* Savings */
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:
+    radial-gradient(1200px 600px at 10% -10%, #e6f6ff 0%, transparent 60%),
+    radial-gradient(1200px 600px at 90% -20%, #eafff3 0%, transparent 60%),
+    var(--bg);
+  color:var(--text); font: 15px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial;
+}
+a{color:var(--accent)}
+header{
+  position:sticky; top:0; z-index:100;
+  background:rgba(247,251,255,.85); backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.wrap{max-width:1200px; margin:0 auto; padding:14px 18px}
+.flex{display:flex; gap:16px; align-items:center}
+.space{justify-content:space-between}
+.brand{font-weight:800; letter-spacing:.2px}
+.pill{
+  background:var(--card); border:1px solid var(--border);
+  border-radius:999px; padding:6px 10px; color:var(--sub)
+}
+.topbar{
+  display:grid; grid-template-columns: 1.1fr 1fr 1.1fr; gap:12px; margin-top:10px
+}
+.topcard{
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  padding:14px 16px; box-shadow:var(--shadow)
+}
+.topcard h3{margin:0 0 8px 0; font-size:14px; color:var(--sub); font-weight:700}
+.big{font-size:28px; font-weight:800; letter-spacing:.2px}
+.delta{font-size:13px; color:var(--sub)}
+.equiv{font-size:13px; color:var(--sub); margin-top:6px; white-space:pre-line}
+.progress{
+  height:10px; background:#edf6ff; border:1px solid var(--border);
+  border-radius:999px; overflow:hidden; margin-top:8px
+}
+.progress > div{height:100%; background:linear-gradient(90deg, var(--accent), #67e8f9)}
+.tabs{ margin-top:16px; display:flex; gap:6px; flex-wrap: wrap; }
+.tabbtn{
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  border-radius:10px; padding:8px 12px; cursor:pointer; font-weight:700
+}
+.tabbtn[aria-selected="true"]{
+  outline:2px solid var(--accent); color:#05212f; background:linear-gradient(180deg,#e0f4ff,#c9efff)
+}
+main{max-width:1200px; margin:18px auto; padding:0 18px 100px}
+.grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:16px}
+.card{
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  padding:16px; box-shadow:var(--shadow)
+}
+.card h2{margin:0 0 10px 0; font-size:18px}
+.row{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+label{display:block; font-size:13px; color:var(--sub); margin-bottom:6px; font-weight:700}
+input[type="text"], input[type="number"], select{
+  width:100%; background:#f7fbff; color:#0c1b2a;
+  border:1px solid var(--border); border-radius:10px; padding:10px 12px
+}
+input[type="range"]{width:100%}
+.i{color:var(--sub); font-size:12px}
+.accordion{border-top:1px dashed var(--muted); margin-top:12px}
+.acc-item{border-bottom:1px dashed var(--muted); padding-bottom:6px}
+.acc-head{display:flex; justify-content:space-between; align-items:center; padding:10px 0; cursor:pointer}
+.acc-title{font-weight:800; display:flex; align-items:center; gap:8px}
+.caret{display:inline-block; transform:rotate(-90deg); transition:transform .2s ease; font-weight:900; color:#083349}
+.caret.open{transform:rotate(0deg)}
+.group-head{margin-top:10px; padding:8px 10px; background:#f0f8ff; border:1px solid var(--border); border-radius:12px; font-weight:800; color:#083349; display:flex; align-items:center; gap:8px; cursor:pointer}
+.group-box{border:1px solid var(--border); background:linear-gradient(180deg,#ffffff,#f8fcff); border-radius:14px; padding:10px; margin-top:6px; box-shadow:var(--shadow)}
+.group-box.collapsed .group-content{display:none}
+.group-box .group-title{display:flex; align-items:center; gap:8px; font-weight:900; color:#083349}
+.group-box .group-title .caret{margin-right:4px}
+.chip{display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-size:12px; font-weight:800}
+.chip.green{background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0}
+.chip.red{background:#fff1f2; color:#9f1239; border:1px solid #fecdd3}
+.btn{
+  background:linear-gradient(180deg,#e8f5ff,#dff2ff);
+  border:1px solid var(--border); color:#05212f;
+  border-radius:10px; padding:10px 12px; cursor:pointer; font-weight:800
+}
+.btn.primary{background:linear-gradient(180deg,#a7e8ff,#7dd3fc); color:#05212f}
+.btn.ghost{background:transparent}
+.tools{display:flex; gap:8px; flex-wrap:wrap}
+.side{position:sticky; top:92px; height:fit-content}
+.chart{width:100%; height:420px; background:#f7fbff; border:1px solid var(--border); border-radius:12px; padding:6px; position:relative}
+.chart svg{width:100%; height:100%}
+.legend{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+.legend .item{display:flex; align-items:center; gap:6px; font-size:12px; color:#6b879e}
+.sw{width:12px; height:12px; border-radius:3px; display:inline-block}
+.k{color:var(--sub); font-size:12px}
+.footerbar{
+  position:fixed; left:0; right:0; bottom:0; background:rgba(255,255,255,.9); border-top:1px solid var(--border); backdrop-filter: blur(8px)
+}
+.drawer{
+  position:fixed; right:18px; bottom:80px; width:360px; max-width:95vw;
+  background:var(--card); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); padding:14px; display:none
+}
+.drawer.open{display:block}
+.small{font-size:12px; color:var(--sub)}
+hr.slim{border:0; border-top:1px solid var(--border); margin:10px 0}
+.notice{font-size:12px; color:var(--sub)}
+.mt8{margin-top:8px} .mt12{margin-top:12px} .mt16{margin-top:16px}
+#tooltip{
+  position:fixed; pointer-events:none; z-index:2000;
+  background:#061d2b; color:#e6f6ff; padding:8px 10px; border-radius:8px;
+  font-size:12px; border:1px solid #114055; display:none; white-space:nowrap;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+}
+/* Grey-out for disabled interventions (tied to baseline not selected) */
+.disabled{
+  opacity:.45;
+  pointer-events:none;
+  filter:grayscale(0.3);
+}

@@ -1,0 +1,55 @@
+{
+  "baseline_intensity": {
+    "kg_co2e_per_patient_day": 120.0,
+    "range_lit_min": 80,
+    "range_lit_max": 180
+  },
+  "category_shares": {
+    "energy_hvac": 0.35,
+    "procurement": 0.25,
+    "pharma": 0.15,
+    "medical_gases": 0.10,
+    "waste": 0.08,
+    "water_other": 0.07
+  },
+  "national_grid_anchor": {
+    "us_mean_kg_per_kwh": 0.3755
+  },
+  "country_grid_defaults_kg_per_kwh": {
+    "USA": 0.3755,
+    "CAN": 0.160,
+    "GBR": 0.210,
+    "FRA": 0.060,
+    "DEU": 0.320,
+    "AUS": 0.650,
+    "IND": 0.720
+  },
+  "energy_module": {
+    "reference_grid_factor_kg_per_kwh": 0.3755,
+    "climate_adjustment": {
+      "cap_multiplier_min": 0.7,
+      "cap_multiplier_max": 1.5
+    },
+    "lighting": {
+      "kwh_per_bed_hour": 0.02
+    }
+  },
+  "crrt": {
+    "kg_co2e_per_hour": 2.0
+  },
+  "medical_gases": {
+    "gwps_100": {
+      "N2O": 265,
+      "Desflurane": 2540,
+      "Sevoflurane": 130,
+      "Isoflurane": 510
+    }
+  },
+  "procurement_pharma": {
+    "bronch_kg_pd": 0.5,
+    "gown_kg_pd": 0.4
+  },
+  "ui_defaults": {
+    "icu_types": ["Med/Surg", "Neuro", "Cardiac", "Surgical", "Mixed Adult", "Pediatric", "NICU"]
+  }
+}

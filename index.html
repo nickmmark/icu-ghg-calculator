@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ICU Carbon Footprint Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="flex space">
+      <div class="flex" style="gap:10px">
+        <div class="brand">ICU Carbon Footprint Calculator</div>
+        <div class="pill">v2.1</div>
+      </div>
+      <div class="tools">
+        <button id="btnShare" class="btn">Share link</button>
+        <button id="btnExport" class="btn">Export CSV</button>
+        <button id="btnAssumptions" class="btn ghost">Assumptions</button>
+        <button id="btnReset" class="btn ghost">Reset baseline</button>
+      </div>
+    </div>
+
+    <div class="topbar">
+      <div class="topcard">
+        <h3>Baseline ICU Carbon Footprint</h3>
+        <div class="big" id="baselineAnnual">—</div>
+        <div class="equiv" id="baselineEquiv"></div>
+      </div>
+      <div class="topcard">
+        <h3>ICU carbon footprint with interventions</h3>
+        <div class="big" id="currentAnnual">—</div>
+        <div class="progress"><div id="progressFill" style="width:0%"></div></div>
+        <div class="delta" id="currentDelta"></div>
+      </div>
+      <div class="topcard">
+        <h3>Greenhouse gas reduction</h3>
+        <div class="big" id="savingsAnnual">0.0 tons/year</div>
+        <div class="equiv" id="savingsEquiv">
+          Equivalent to taking 0 cars off the road
+or Saving 0 acres from deforestation
+or planting 0 seedlings
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Main tabs">
+      <button class="tabbtn" role="tab" aria-selected="true" data-tab="baseline">Baseline</button>
+      <button class="tabbtn" role="tab" aria-selected="false" data-tab="interventions">Interventions</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- Baseline tab -->
+  <section id="tab-baseline" class="grid">
+    <div class="card">
+      <h2>ICU baseline setup</h2>
+      <div class="row">
+        <div>
+          <label>🛏️ Beds</label>
+          <input type="number" id="beds" min="1" step="1" value="20">
+        </div>
+        <div>
+          <label>📈 Occupancy (%)</label>
+          <input type="number" id="occupancy" min="10" max="100" step="1" value="85">
+        </div>
+      </div>
+
+      <div class="row mt12">
+        <div>
+          <label>🌍 Country</label>
+          <select id="country"></select>
+        </div>
+        <div>
+          <label>📮 ZIP code (USA only)</label>
+          <input type="text" id="zip" placeholder="e.g., 98104">
+          <div class="i">If not in the USA or unknown, leave blank to use country grid default.</div>
+        </div>
+      </div>
+
+      <div class="row mt12">
+        <div>
+          <label>🏥 ICU type</label>
+          <select id="icuType"></select>
+        </div>
+        <div>
+          <label>🌡️ Climate multiplier (advanced)</label>
+          <input type="number" id="climateMult" step="0.01" value="1.00">
+          <div class="i">Optional: >1 for hot/cold climates; &lt;1 for mild. Affects Energy/HVAC only.</div>
+        </div>
+      </div>
+
+      <h2 class="mt16">Baseline practices</h2>
+      <div id="baselinePractices"></div>
+
+      <div class="mt16">
+        <button id="recalc" class="btn primary">Recalculate baseline</button>
+      </div>
+
+      <hr class="slim mt16" />
+      <div class="k" id="baselineNote">Using ZIP/country grid and assumptions below.</div>
+    </div>
+
+    <div class="side">
+      <div class="card">
+        <h2>Category breakdown</h2>
+        <div class="chart" id="chartStackBaseline"></div>
+        <div class="legend">
+          <div class="item"><span class="sw" style="background:var(--energy)"></span> Energy/HVAC</div>
+          <div class="item"><span class="sw" style="background:var(--procure)"></span> Procurement</div>
+          <div class="item"><span class="sw" style="background:var(--pharma)"></span> Pharma</div>
+          <div class="item"><span class="sw" style="background:var(--gases)"></span> Gases</div>
+          <div class="item"><span class="sw" style="background:var(--waste)"></span> Waste</div>
+          <div class="item"><span class="sw" style="background:var(--water)"></span> Water/Other</div>
+          <div class="item"><span class="sw" style="background:var(--lighting)"></span> Lighting</div>
+          <div class="item"><span class="sw" style="background:var(--crrt)"></span> CRRT</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interventions tab -->
+  <section id="tab-interventions" class="grid" style="display:none">
+    <div class="card">
+      <h2>Interventions</h2>
+      <div id="interventionsNotice" class="small" style="display:none; margin-bottom:8px; color:#9f1239;"></div>
+      <div id="interventionsList"></div>
+    </div>
+
+    <div class="side">
+      <div class="card">
+        <h2>Before vs After</h2>
+        <div class="chart" id="chartCompare"></div>
+        <div class="legend">
+          <div class="item"><span class="sw" style="background:var(--energy)"></span> Energy/HVAC</div>
+          <div class="item"><span class="sw" style="background:var(--procure)"></span> Procurement</div>
+          <div class="item"><span class="sw" style="background:var(--pharma)"></span> Pharma</div>
+          <div class="item"><span class="sw" style="background:var(--gases)"></span> Gases</div>
+          <div class="item"><span class="sw" style="background:var(--waste)"></span> Waste</div>
+          <div class="item"><span class="sw" style="background:var(--water)"></span> Water/Other</div>
+          <div class="item"><span class="sw" style="background:var(--lighting)"></span> Lighting</div>
+          <div class="item"><span class="sw" style="background:var(--crrt)"></span> CRRT</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="footerbar">
+  <div class="wrap flex space">
+    <div class="small">Built for ICU sustainability. Data stays in your browser.</div>
+    <div class="tools">
+      <button id="btnExportJSON" class="btn ghost">Export JSON</button>
+    </div>
+  </div>
+</div>
+
+<!-- Assumptions drawer -->
+<div id="drawer" class="drawer" aria-live="polite">
+  <div class="flex space">
+    <div style="font-weight:800">Assumptions</div>
+    <button id="btnCloseDrawer" class="btn ghost">Close</button>
+  </div>
+  <hr class="slim" />
+  <div id="assumptionsView" class="small"></div>
+</div>
+
+<!-- Chart tooltip -->
+<div id="tooltip"></div>
+
+<!-- Modules -->
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
