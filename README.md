@@ -1,14 +1,14 @@
 # icu-ghg-calculator
 a webapp to estimate intensive care unit greenhouse gas emissions and motivate change
 
-# 🧮 Calculations
+## 🧮 Calculations
 
 ### Adjusting for local energy consumption
 ### Adjusting for baseline ICU practices
 
 
-# ⚙️ Implementation
-## Files
+## ⚙️ Implementation
+### Files
 ```
 / (project root)
 ├─ index.html                     # Minimal HTML shell. Loads styles & JS modules in order.
@@ -34,7 +34,7 @@ a webapp to estimate intensive care unit greenhouse gas emissions and motivate c
    └─ interventions.schema.json   # Lightweight runtime validator for interventions.json (optional)
 ```
 
-## Functions
+### Functions
 * state.js
    * state (object): { assumptions, interventions, zipTable, subregionTable, inputs, baselinePractices, derived }
 * data.js
@@ -54,9 +54,22 @@ a webapp to estimate intensive care unit greenhouse gas emissions and motivate c
 * main.js
    * orchestrates boot order
 
-
-
-
+### Creating/updating interventions.json
+Use the helper script `converter.py`
+1. Convert JSON -> CSV (for editing)
+```
+python3 converter.py json-to-csv --json interventions.json \
+  --groups-out groups.csv \
+  --interventions-out interventions.csv
+```
+2. Edit groups.csv and interventions.csv in Excel/Google Sheets
+3. Convert CSVs -> JSON (to feed back into the app)
+```
+python3 converter.py csv-to-json \
+  --groups groups.csv \
+  --interventions interventions.csv \
+  --json-out interventions.json
+```
 
 # 📚️ References
 
