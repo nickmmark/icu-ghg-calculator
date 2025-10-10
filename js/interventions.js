@@ -325,12 +325,35 @@ export function applyInterventions(){
         const kwh = hours * beds * 365 * kwhPerHrBed;
         const gf = (p.grid_factor_source==='baseline.location.grid_factor_kg_per_kwh')? grid : A.energy_module.reference_grid_factor_kg_per_kwh;
         delta_t = (kwh * gf)/1000;
+
+      // =========================
+      // FIX: percent_of_category
+      // =========================
       }else if(m==='percent_of_category'){
-        let percent = p.percent_reduction?.source_value ? (+val) : resolveSource(p.percent_reduction, 0);
-        if(p.percent_reduction?.scale_with_value_pct) percent = (+val) * (resolveSource(p.percent_reduction,0)/100);
+        // Pull the base category tons
         const cat = p.category || 'energy_hvac';
         const base_t = base.categories_t[cat] || 0;
-        delta_t = base_t * (percent/100);
+
+        // 1) Resolve the nominal percent
+        let nominal = 0;
+        if (typeof p.percent_reduction === 'object' && p.percent_reduction && p.percent_reduction.source_value) {
+          // slider gives percent directly (0–100)
+          nominal = +val;
+        } else {
+          // constant, e.g. 5 (%)
+          nominal = resolveSource(p.percent_reduction, 0);
+        }
+
+        // 2) If scale_with_value_pct, scale by slider *as a fraction* of the base percent
+        //    e.g. base=5%, slider=60 -> 60% * 5% = 3% (NOT 300%)
+        if (p.scale_with_value_pct === true) {
+          nominal = (+val) * (nominal / 100);
+        }
+
+        // 3) Clamp and apply once as a percent
+        const percent = Math.max(0, Math.min(100, isFinite(nominal) ? nominal : 0));
+        delta_t = base_t * (percent / 100);
+
       }else if(m==='intensity_per_hour'){
         const kgph = resolveSource(p.kg_per_hour, 2.0);
         delta_t = (val * kgph * PD)/1000;
@@ -377,3 +400,4 @@ function resolveSource(ref, fallback){
   }
   return fallback;
 }
+
