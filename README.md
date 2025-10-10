@@ -8,7 +8,7 @@ a webapp to estimate intensive care unit greenhouse gas emissions and motivate c
 * Through relatively small changes in practice and equipment, individual clinicians and hospitals can realize large reductions in the overall carbon footprint. 
 * This tool is intended to help clinicians and hospitals identify and realize practice improvements to reduce GHG emissions and make their ICU more sustainable.
 
-Try the calculator out here
+Try the calculator out [here](https://nickmmark.github.io/icu-ghg-calculator/)
 
 ## 🧮 Calculations
 
