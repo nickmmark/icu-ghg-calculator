@@ -1,20 +1,68 @@
 # icu-ghg-calculator
-a webapp to estimate intensive care unit greenhouse gas emissions and motivate change
+an app to estimate intensive care unit greenhouse gas emissions and motivate change
 
-## Context
+## 🌿 ICU Greenhouse Gas Footprint Calculator
 * The carbon footprint of intensive care units (ICUs) is massive.
 * The US healthcare system produces 8-9% of all greenhouse gas (GHG) emissions in the US - more than the entire economy of Japan.
 * ICUs are particularly carbon intensive; one day of ICU treatment for septic shock (~140-170 kg CO2 equivalent) is equivalent to driving an ICE vehicle >400 miles or using electricity for 2 months in a typical home.
-* Through relatively small changes in practice and equipment, individual clinicians and hospitals can realize large reductions in the overall carbon footprint. 
-* This tool is intended to help clinicians and hospitals identify and realize practice improvements to reduce GHG emissions and make their ICU more sustainable.
+* Through relatively small changes in practice and equipment, individual clinicians and hospitals can realize large reductions in the overall carbon footprint.
+* This calculator provides a transparent, literature-based estimate of an ICU’s carbon footprint, localized for energy mix and adjustable for clinical practices. 
+* This tool is intended to help clinicians and hospitals identify and realize practice improvements to meaningfully reduce GHG emissions and make their ICU more sustainable.
 
 Try the calculator out [here](https://nickmmark.github.io/icu-ghg-calculator/)
 
+
+## Design
+* Two-tab interface:
+   * Baseline — Estimate current emissions by entering ICU size, occupancy, and location.
+   * Interventions — Toggle or adjust sustainability practices and instantly see reductions.
+* Dynamic CO₂ bar: Live updates for total, savings %, and “equivalents” (e.g., cars, homes, trees).
+* Expandable details: Each intervention shows assumptions, formula, and references.
+* Modular JSON architecture: Non-technical users can edit assumptions and interventions without touching code.
+
+
 ## 🧮 Calculations
 
-### Adjusting for region/local energy consumption
-### Adjusting for baseline ICU practices
-### Implementing changes
+The app uses `kg CO₂e per ICU patient-day` as a core metric and converts using:
+```
+Annual_tCO2e = Beds × Occupancy × 365 × (Intensity_kgCO2e_per_patient_day / 1000)
+```
+| Parameter               | Value                                                                               | Source                            |
+| ----------------------- | ----------------------------------------------------------------------------------- | --------------------------------- |
+| Reference ICU intensity | **140 kg CO₂e / patient-day**                                                       | McGain et al., 2018; range 88–178 |
+| Category shares         | Energy 0.65 • Procurement 0.18 • Pharma 0.10 • Gases 0.03 • Waste 0.02 • Water 0.02 | Literature mean                   |
+
+
+#### Energy and HVAC consumption
+The app adjusts the baseline based on the ICU size/occupancy and location, to capture variations in local temperatures (HVAC costs) and the carbon footprint of local energy sources:
+```
+Energy_kgCO2e/pd = kWh_ref/pd × (Grid_factor_local / Grid_factor_ref) × Climate_multiplier
+```
+Reference grid factor (US mean): 827.520 lb/MWh = 0.3755 kg CO₂e/kWh
+ZIP-specific factors: from EPA eGRID (2022–24)
+Climate multiplier: derived from HDD/CDD vs. reference site (Kansas City); capped ±30 %.
+
+### Adjusting for baseline ICU practices & Interventions
+Each intervention is also used as part of a baseline assessment (e.g. determining if anesthetic gasses like N₂O and Desflurane are used) and as a potential opportunity for improvemnet (e.g. how much GHG would be mitigated by eliminating Desflurane)
+
+Each intervention includes:
+* Calculation formula
+* Assumption references
+* Markdown details and citations
+
+#### CRRT 
+Placeholder coefficient (from dialysis LCA):
+2.0 kg CO₂e / hour of CRRT runtime.
+Users can adjust in assumptions.json when site-specific data are available.
+
+#### Anesthetic gasses
+| Gas         | GWP₁₀₀ | Notes                                      |
+| ----------- | ------ | ------------------------------------------ |
+| N₂O         | 273    | High-impact; easily eliminated outside ORs |
+| Desflurane  | 2540   | Avoid entirely if possible                 |
+| Sevoflurane | 130    | Lower GWP; minimal ICU use                 |
+| Isoflurane  | 510    | Moderate GWP                               |
+
 
 
 ## ⚙️ Implementation
