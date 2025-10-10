@@ -2,9 +2,11 @@
 a webapp to estimate intensive care unit greenhouse gas emissions and motivate change
 
 ## Context
-* The carbon footprint of intensive care is massive. The US healthcare system produces 8-9% of all greenhouse gas (GHG) emissions in the US - more than the entire economy of Japan - and ICUs are particularly carbon intensive! One day of ICU treatment for septic shock (~140-170 kg CO2 equivalent) is equivalent to driving an ICE vehicle >400 miles or using electricity for 2 months in a typical home.
-* Through relatively small practice and equipment changes, individual clinicians and hospitals can realize large reductions in carbon footprint. 
-* This tool is intended to help clinicians and hospitals realize practice improvements to reduce GHG and make their ICU more sustainable.
+* The carbon footprint of intensive care units (ICUs) is massive.
+* The US healthcare system produces 8-9% of all greenhouse gas (GHG) emissions in the US - more than the entire economy of Japan.
+* ICUs are particularly carbon intensive; one day of ICU treatment for septic shock (~140-170 kg CO2 equivalent) is equivalent to driving an ICE vehicle >400 miles or using electricity for 2 months in a typical home.
+* Through relatively small changes in practice and equipment, individual clinicians and hospitals can realize large reductions in the overall carbon footprint. 
+* This tool is intended to help clinicians and hospitals identify and realize practice improvements to reduce GHG emissions and make their ICU more sustainable.
 
 Try the calculator out here
 
