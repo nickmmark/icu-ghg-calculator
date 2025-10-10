@@ -1,7 +1,7 @@
 # icu-ghg-calculator
 an app to estimate intensive care unit greenhouse gas emissions and motivate change
 
-## 🌿 ICU Greenhouse Gas Footprint Calculator
+## ♻️ ICU Greenhouse Gas Footprint Calculator
 * The carbon footprint of intensive care units (ICUs) is massive.
 * The US healthcare system produces 8-9% of all greenhouse gas (GHG) emissions in the US - more than the entire economy of Japan.
 * ICUs are particularly carbon intensive; one day of ICU treatment for septic shock (~140-170 kg CO2 equivalent) is equivalent to driving an ICE vehicle >400 miles or using electricity for 2 months in a typical home.
@@ -12,7 +12,7 @@ an app to estimate intensive care unit greenhouse gas emissions and motivate cha
 Try the calculator out [here](https://nickmmark.github.io/icu-ghg-calculator/)
 
 
-## Design
+## 🌿 Design
 * Two-tab interface:
    * Baseline — Estimate current emissions by entering ICU size, occupancy, and location.
    * Interventions — Toggle or adjust sustainability practices and instantly see reductions.
@@ -31,6 +31,14 @@ Annual_tCO2e = Beds × Occupancy × 365 × (Intensity_kgCO2e_per_patient_day / 1
 | ----------------------- | ----------------------------------------------------------------------------------- | --------------------------------- |
 | Reference ICU intensity | **140 kg CO₂e / patient-day**                                                       | McGain et al., 2018; range 88–178 |
 | Category shares         | Energy 0.65 • Procurement 0.18 • Pharma 0.10 • Gases 0.03 • Waste 0.02 • Water 0.02 | Literature mean                   |
+
+#### Equivalency factors
+| Metric                      | Conversion per t CO₂e |
+| --------------------------- | --------------------- |
+| Cars removed (1 yr)         | 0.217                 |
+| Homes’ electricity (1 yr)   | 0.141                 |
+| Acres of forest preserved   | 1.19                  |
+| Tree seedlings grown 10 yrs | 16.5                  |
 
 
 #### Energy and HVAC consumption
@@ -140,11 +148,19 @@ python3 converter.py csv-to-json \
 # Versioning
 * Current Version: 2.1.x
 
-# Data sources
+# 💾 Data sources
 Uses the [EPA eGRID dataset](https://www.epa.gov/egrid) to estimate regional CO2 production.
 
 # 🪪 License
+© 2025 Nick Mark, MD
+Please credit ICU GHG Calculator and cite underlying research when reproducing or extending the tool.
+
 This is provided "as is" without warranty of any kind with under an [MIT License](https://github.com/nickmmark/icu-ghg-calculator/blob/main/LICENSE).
 
 # 📚️ References
+* McGain F et al. Life cycle assessment of intensive care units in Australia and the USA. Crit Care Med. 2018;46(10):e983–e990.
+* Sherman JD et al. Carbon footprint of critical care: a systematic review. BMJ Open 2024.
+* NHS England. Delivering a ‘Net Zero’ National Health Service. 2020.
+* EPA eGRID (2022–24). Power Profiler ZIP-to-subregion database.
+* IPCC AR6 WGIII. Global Warming Potentials (100-year).
 
