@@ -1,10 +1,18 @@
 # icu-ghg-calculator
 a webapp to estimate intensive care unit greenhouse gas emissions and motivate change
 
+## Context
+* The carbon footprint of intensive care is massive. The US healthcare system produces 8-9% of all greenhouse gas (GHG) emissions in the US - more than the entire economy of Japan - and ICUs are particularly carbon intensive! One day of ICU treatment for septic shock (~140-170 kg CO2 equivalent) is equivalent to driving an ICE vehicle >400 miles or using electricity for 2 months in a typical home.
+* Through relatively small practice and equipment changes, individual clinicians and hospitals can realize large reductions in carbon footprint. 
+* This tool is intended to help clinicians and hospitals realize practice improvements to reduce GHG and make their ICU more sustainable.
+
+Try the calculator out here
+
 ## 🧮 Calculations
 
-### Adjusting for local energy consumption
+### Adjusting for region/local energy consumption
 ### Adjusting for baseline ICU practices
+### Implementing changes
 
 
 ## ⚙️ Implementation
@@ -79,6 +87,14 @@ python3 converter.py csv-to-json \
    * param_kwh_per_hour_per_bed, param_grid_factor_source, param_annual_usage_kg, param_gwp100, param_annual_agent_minutes, param_agent_consumption_ml_per_min, param_density_g_per_ml, param_percent_reduction, param_category,    param_scale_with_value_pct, param_kg_per_hour, param_kg_co2e_per_puff
 * UI: ui_icon, ui_summary, ui_details_markdown, ui_references (use Label|URL;Another Label|URL2)
 
+# Versioning
+* Current Version: 2.1.x
+
+# Data sources
+Uses the [EPA eGRID dataset](https://www.epa.gov/egrid) to estimate regional CO2 production.
+
+# 🪪 License
+This is provided "as is" without warranty of any kind with under an [MIT License]().
 
 # 📚️ References
 
