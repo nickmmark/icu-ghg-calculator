@@ -70,6 +70,15 @@ python3 converter.py csv-to-json \
   --interventions interventions.csv \
   --json-out interventions.json
 ```
+#### What this does
+* Identity & grouping: id, group, title, type, impact_category
+* Slider range (if type=slider): range_min, range_max, range_step, range_unit
+* Baseline control: baseline_label, baseline_type, baseline_default_enabled, baseline_default_value, baseline_min, baseline_max, baseline_step, baseline_unit
+* Calculation: calc_method, calc_formula_note
+* Params (fill only what you use):
+   * param_kwh_per_hour_per_bed, param_grid_factor_source, param_annual_usage_kg, param_gwp100, param_annual_agent_minutes, param_agent_consumption_ml_per_min, param_density_g_per_ml, param_percent_reduction, param_category,    param_scale_with_value_pct, param_kg_per_hour, param_kg_co2e_per_puff
+* UI: ui_icon, ui_summary, ui_details_markdown, ui_references (use Label|URL;Another Label|URL2)
+
 
 # 📚️ References
 
