@@ -1,6 +1,8 @@
 # icu-ghg-calculator
 an app to estimate intensive care unit greenhouse gas emissions and motivate change
 
+![demo of the ICU GHG calculator v0.3](https://github.com/nickmmark/icu-ghg-calculator/blob/main/demo.gif)
+
 ## ♻️ ICU Greenhouse Gas Footprint Calculator
 * The carbon footprint of intensive care units (ICUs) is massive.
 * The US healthcare system produces 8-9% of all greenhouse gas (GHG) emissions in the US - more than the entire economy of Japan.
