@@ -227,4 +227,5 @@ This is provided "as is" without warranty of any kind with under an [MIT License
 * EPA eGRID (2022–24). Power Profiler ZIP-to-subregion database.
 * IPCC AR6 WGIII. Global Warming Potentials (100-year).
 * Weppner WG et al, A Longitudinal Assessment of Greenhouse Gas Emissions From Inhaler Devices in a National Health System. JAMA. 2025. doi:10.1001/jama.2025.15638
+* Rabin, AS et al, [Reducing the Climate Impact of Critical Care](https://www.chestcc.org/article/S2949-7884(23)00037-0/pdf), CHEST Critical Care 
 
