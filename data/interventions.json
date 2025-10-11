@@ -261,7 +261,7 @@
         "unit": "% deliveries low-emission"
       },
       "baseline_control": {
-        "label": "% low-emission deliveries baseline",
+        "label": "% low-emission deliveries made at baseline",
         "type": "number",
         "default_enabled": true,
         "default_value": 0,
@@ -308,7 +308,7 @@
         "unit": "% electricity offset"
       },
       "baseline_control": {
-        "label": "% electricity currently offset",
+        "label": "% electricity currently offset by renewables",
         "type": "number",
         "default_enabled": true,
         "default_value": 0,
@@ -353,7 +353,7 @@
         "unit": "% HVAC reduction"
       },
       "baseline_control": {
-        "label": "Fixed high ventilation baseline?",
+        "label": "Do all ICU rooms have fixed high ventilation at baseline?",
         "type": "boolean",
         "default_enabled": true
       },
@@ -369,7 +369,7 @@
       "ui": {
         "icon": "\ud83c\udf2c\ufe0f",
         "summary": "Only heat/cool rooms that are occupied. Matching ventilation to occupancy/CO\u2082 can save fan & heating/cooling energy.",
-        "details_markdown": "Controls and policy changes required.",
+        "details_markdown": "Sensors/Controls and policy changes required.",
         "references": []
       }
     },
@@ -386,7 +386,7 @@
         "unit": "\u00b0C change"
       },
       "baseline_control": {
-        "label": "Strict 21 \u00b0C temperature maintained year-round?",
+        "label": "Is a strict 21 \u00b0C temperature maintained year-round?",
         "type": "boolean",
         "default_enabled": true
       },
@@ -412,36 +412,9 @@
       }
     },
     {
-      "id": "improved_insulation",
-      "group": "infrastructure",
-      "title": "Improve building insulation",
-      "type": "binary",
-      "impact_category": "energy_hvac",
-      "baseline_control": {
-        "label": "Suboptimal insulation baseline?",
-        "type": "boolean",
-        "default_enabled": true
-      },
-      "calculation": {
-        "method": "percent_of_category",
-        "formula_note": "Reduced HVAC loads via insulation upgrades",
-        "params": {
-          "percent_reduction": 10.0,
-          "category": "energy_hvac",
-          "scale_with_value_pct": false
-        }
-      },
-      "ui": {
-        "icon": "\ud83c\udfe0",
-        "summary": "Improved insulation/air sealing lowers heating and cooling demand.",
-        "details_markdown": "Commissioning + envelope improvements.",
-        "references": []
-      }
-    },
-    {
       "id": "high_efficiency_equipment",
       "group": "infrastructure",
-      "title": "High-efficiency HVAC & plant equipment upgrades",
+      "title": "HVAC: High-efficiency plant equipment upgrades",
       "type": "slider",
       "impact_category": "energy_hvac",
       "range": {
@@ -451,7 +424,7 @@
         "unit": "% energy reduction"
       },
       "baseline_control": {
-        "label": "Outdated central plant/HVAC baseline?",
+        "label": "Is the central plant/HVAC outdated (Common if build before 2000)",
         "type": "boolean",
         "default_enabled": true
       },
@@ -485,7 +458,7 @@
     {
       "id": "heat_recovery_system",
       "group": "infrastructure",
-      "title": "Heat recovery for ventilation/chilled-water (ERV/HRCH)",
+      "title": "HVAC: Heat recovery for ventilation/chilled-water (ERV/HRCH)",
       "type": "slider",
       "impact_category": "energy_hvac",
       "range": {
@@ -495,7 +468,7 @@
         "unit": "% HVAC reduction"
       },
       "baseline_control": {
-        "label": "No heat recovery at baseline?",
+        "label": "Does the central plant use heat recovery at baseline? (Uncommon if HVAC plant older than the 2010s)",
         "type": "boolean",
         "default_enabled": true
       },
@@ -524,6 +497,33 @@
             "url": "https://www.nrel.gov/state-local-tribal/blog/posts/energy-efficiency-in-hospitals.html"
           }
         ]
+      }
+    },
+    {
+      "id": "improved_insulation",
+      "group": "infrastructure",
+      "title": "Improve building insulation",
+      "type": "binary",
+      "impact_category": "energy_hvac",
+      "baseline_control": {
+        "label": "Suboptimal insulation baseline? (Common if hospital built before 1980s)",
+        "type": "boolean",
+        "default_enabled": true
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Reduced HVAC loads via insulation upgrades",
+        "params": {
+          "percent_reduction": 10.0,
+          "category": "energy_hvac",
+          "scale_with_value_pct": false
+        }
+      },
+      "ui": {
+        "icon": "\ud83c\udfe0",
+        "summary": "Improved insulation/air sealing lowers heating and cooling demand.",
+        "details_markdown": "Commissioning + envelope improvements.",
+        "references": []
       }
     },
     {
@@ -579,10 +579,10 @@
         "unit": "% plastics recycled"
       },
       "baseline_control": {
-        "label": "% plastics recycled baseline",
+        "label": "% medical plastics recycled at baseline",
         "type": "number",
         "default_enabled": true,
-        "default_value": 10,
+        "default_value": 5,
         "min": 0,
         "max": 100,
         "step": 5,
@@ -620,7 +620,7 @@
       "type": "binary",
       "impact_category": "procurement",
       "baseline_control": {
-        "label": "Bulk single-use items stocked in each room?",
+        "label": "Are large amounts of single-use items stocked in each room?",
         "type": "boolean",
         "default_enabled": true
       },
@@ -690,11 +690,11 @@
     {
       "id": "extend_equipment_lifespan",
       "group": "laundry",
-      "title": "Extend product lifespans through repair and upgrade",
+      "title": "Repair/maintain washers/dryers/blanket warmers",
       "type": "binary",
       "impact_category": "procurement",
       "baseline_control": {
-        "label": "No repair/upgrade program in place?",
+        "label": "Is there a repair/upgrade program in place for washers/dryers/blanket warmers?",
         "type": "boolean",
         "default_enabled": true
       },
@@ -710,7 +710,7 @@
       "ui": {
         "icon": "\ud83d\udd27",
         "summary": "Maintain and refurbish equipment instead of replacing.",
-        "details_markdown": "Approx 5 % procurement CO\u2082 savings; circular-economy principles.",
+        "details_markdown": "(Approx 5 % procurement CO\u2082 savings; circular-economy principles.)",
         "references": [
           {
             "label": "Mowatt et al 2023 Table 1",
@@ -730,7 +730,7 @@
       "type": "binary",
       "impact_category": "energy_hvac",
       "baseline_control": {
-        "label": "Admits all borderline cases at baseline?",
+        "label": "Are borderline cases routinely admitted to ICU? (Common if no step-down unit)",
         "type": "boolean",
         "default_enabled": true
       },
@@ -782,7 +782,7 @@
       "ui": {
         "icon": "\ud83d\udde3\ufe0f",
         "summary": "Earlier alignment may avert non-beneficial interventions that are not aligned with patient/family wishes.",
-        "details_markdown": "Hard to quantify precisely; conservative 5% proxy.",
+        "details_markdown": "(Hard to quantify precisely; conservative 5% proxy.)",
         "references": []
       }
     },
@@ -816,7 +816,7 @@
     {
       "id": "avoid_overdiagnosis",
       "group": "low_value_care",
-      "title": "Avoid over-investigation and routine testing",
+      "title": "Avoid over-investigation and routine testing (e.g. daily CXR)",
       "type": "binary",
       "impact_category": "procurement",
       "baseline_control": {
@@ -835,8 +835,8 @@
       },
       "ui": {
         "icon": "\ud83e\ude7b",
-        "summary": "Eliminate routine daily labs & imaging without indication.",
-        "details_markdown": "Consistent with \u2018Choosing Wisely\u2019 ICU recommendations; Mowatt et al. 2023.",
+        "summary": "Eliminate routine daily labs & imaging without indication. (e.g. \u201cdaily CXR\u201d order)",
+        "details_markdown": "Consistent with \u2018Choosing Wisely\u2019 ICU recommendations.",
         "references": [
           {
             "label": "Mowatt et al., 2023 J Intensive Care Soc",
@@ -894,7 +894,7 @@
       "type": "binary",
       "impact_category": "waste",
       "baseline_control": {
-        "label": "In-person off-site transport for all consults?",
+        "label": "Are the majority of meetings/consultation done face to face?",
         "type": "boolean",
         "default_enabled": true
       },
@@ -910,7 +910,7 @@
       "ui": {
         "icon": "\ud83d\udcbb",
         "summary": "Teleconsults and family video visits replace travel.",
-        "details_markdown": "Reduces travel-related CO\u2082 \u2248 0.1\u20130.3 t per ICU bed year.",
+        "details_markdown": "(Estimated to reduce travel-related CO\u2082 \u2248 0.1\u20130.3 t per ICU bed year.)",
         "references": [
           {
             "label": "Mowatt et al 2023 Table 1",
@@ -1007,7 +1007,7 @@
       },
       "ui": {
         "icon": "\ud83d\uddd3\ufe0f",
-        "summary": "Shift menus toward in-season produce and local suppliers.",
+        "summary": "Shift menus toward in-season produce from local suppliers.",
         "details_markdown": "Seasonal planning reduces cold-chain intensity and can support lower-carbon choices.",
         "references": [
           {
@@ -1097,7 +1097,7 @@
       },
       "ui": {
         "icon": "\ud83d\udc8a",
-        "summary": "Oral formulations often have lower packaging and prep load. Also reduces risk of CLABSI",
+        "summary": "Oral formulations often have lower packaging and prep load. Also reduces risk of CLABSI.",
         "details_markdown": "Scope to meds with equivalent efficacy/bioavailability.",
         "references": []
       }
@@ -1161,7 +1161,7 @@
       "ui": {
         "icon": "\ud83e\uddea",
         "summary": "Use protocols and narrower lab thresholds to limit unnecessary electrolyte replacement.",
-        "details_markdown": "Conservative estimate of reduced pharmacy resource use.",
+        "details_markdown": "For most patients tight electrolyte repletion does not improve outcomes. (Conservative estimate of reduced pharmacy resource use.)",
         "references": [
           {
             "label": "Behavioural patterns of electrolyte repletion in intensive care units (2018)",
@@ -1177,7 +1177,7 @@
       "type": "binary",
       "impact_category": "medical_gases",
       "baseline_control": {
-        "label": "N\u2082O used annually (kg)",
+        "label": "N\u2082O used annually (kg) (uncommon)",
         "type": "number",
         "default_enabled": false,
         "default_value": 10.0,
@@ -1218,7 +1218,7 @@
         "unit": "agent minutes/year"
       },
       "baseline_control": {
-        "label": "Annual desflurane minutes",
+        "label": "Annual desflurane minutes (uncommon)",
         "type": "number",
         "default_enabled": false,
         "default_value": 2000.0,
@@ -1264,7 +1264,7 @@
         "label": "Average MDI puffs per patient-day",
         "type": "number",
         "default_enabled": true,
-        "default_value": 10.0,
+        "default_value": 8,
         "min": 0.0,
         "max": 1000.0,
         "step": 1.0,
@@ -1279,9 +1279,14 @@
       },
       "ui": {
         "icon": "\ud83d\udca8",
-        "summary": "Propellants in MDIs (HFA) have non-trivial GWP.",
+        "summary": "The propellants used in MDIs (e.g. HFA) are a significant greenhouse gas. One MDI is equivalent to driving 200 km.",
         "details_markdown": "Where safe & effective, prefer nebulizers or DPIs.",
-        "references": []
+        "references": [
+          {
+            "label": "Weppner WG et al, JAMA. 2025. doi:10.1001/jama.2025.15638",
+            "url": "Weppner WG et al, JAMA. 2025. doi:10.1001/jama.2025.15638"
+          }
+        ]
       }
     },
     {
@@ -1297,7 +1302,7 @@
         "unit": "% reusable"
       },
       "baseline_control": {
-        "label": "% reusable bronchoscopes at baseline",
+        "label": "% of bronchoscopes performed using reusable bronchoscopes at baseline",
         "type": "number",
         "default_enabled": true,
         "default_value": 20.0,
@@ -1318,7 +1323,7 @@
       "ui": {
         "icon": "\ud83d\udd01",
         "summary": "Reusable devices reduce manufacturing/waste impacts.",
-        "details_markdown": "Assumes linear savings with % reusable.",
+        "details_markdown": "(Assumes linear savings with % reusable.)",
         "references": []
       }
     },
@@ -1335,7 +1340,7 @@
         "unit": "% reusable"
       },
       "baseline_control": {
-        "label": "% reusable stethoscopes baseline",
+        "label": "% of ICU rooms that use reusable stethoscopes at baseline",
         "type": "number",
         "default_enabled": true,
         "default_value": 0.0,
@@ -1394,7 +1399,7 @@
       "ui": {
         "icon": "\ud83c\udf2c\ufe0f",
         "summary": "Titrate FiO\u2082 to target; reduces industrial oxygen use.",
-        "details_markdown": "Linear effect: 10 % less flow \u2248 2 % GHG savings from oxygen production.",
+        "details_markdown": "(Linear effect: 10 % less flow \u2248 2 % GHG savings from oxygen production plant.)",
         "references": [
           {
             "label": "Mowatt et al 2023",
