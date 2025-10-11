@@ -1,5 +1,7 @@
 # icu-ghg-calculator
-an app to estimate intensive care unit greenhouse gas emissions and motivate change
+An app to estimate intensive care unit greenhouse gas emissions and motivate change!
+
+Estimate your ICU's baseline CO2 footprint and see how much you can decrease it with changes:
 
 ![demo of the ICU GHG calculator v0.3](https://github.com/nickmmark/icu-ghg-calculator/blob/main/demo.gif)
 
