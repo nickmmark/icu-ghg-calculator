@@ -61,6 +61,11 @@ header{
   background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
   padding:14px 16px; box-shadow:var(--shadow)
 }
+/* Highlight Greenhouse Gas Reduction card (positive savings) */
+.topcard.savings .big,
+.topcard.savings .equiv {
+  color: var(--save);
+}
 .topcard h3{margin:0 0 8px 0; font-size:14px; color:var(--sub); font-weight:700}
 .big{font-size:28px; font-weight:800; letter-spacing:.2px}
 .delta{font-size:13px; color:var(--sub)}
