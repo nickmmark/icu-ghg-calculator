@@ -205,11 +205,11 @@ python3 converter.py csv-to-json \
 * UI: ui_icon, ui_summary, ui_details_markdown, ui_references (use Label|URL;Another Label|URL2)
 
 ## Versioning
-* Current Version: 2.1.x
+* Current Version: 0.3.5
 * Schema: x.y.z where
-  * x is structual changes in file system/architecture or addition of new files
-  * y is code changes within existing files
-  * z is the version of interventions JSON 
+  * x is release
+  * y is major code changes (e.g. adding new js files)
+  * z is minor code changes (e.g. updating the calculation or UX)
 
 ## 💾 Data sources
 Uses the [EPA eGRID dataset](https://www.epa.gov/egrid) to estimate regional CO2 production.
