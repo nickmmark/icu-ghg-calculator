@@ -107,6 +107,51 @@ Users can adjust in assumptions.json when site-specific data are available.
 └─ /schemas
    └─ interventions.schema.json   # Lightweight runtime validator for interventions.json (optional)
 ```
+```
+                                                                                                     
+                               ┌─────────┐                                                           
+                               │         │                                                           
+                               │ ┌─────────┐                        ┌─────────┐                      
+                               │ │         │                        │         │                      
+                               │ │         │    build BASELINE      │         │                      
+                               │ │         │    tCO2e estimate      │         │  display ΔtCO2       
+                               │ │         ├────────────────────►   │charts.js│  opportunities       
+                               │ │         │                        │         │                      
+                               │ │         │                        │         │                      
+                               └─│         │                        │         │                      
+                                 │         │                        └─────────┘                      
+                                 └─────────┘                             ▲                           
+                          subregion_emissions.csv                        │                           
+                               & zip_CO2.csv                             │                           
+                                                                         │                           
+                                                                         │                           
+   ┌─────────┐                 ┌─────────┐                               │                           
+   │         │                 │         │                               │                           
+   │         │                 │         │                               │                           
+   │         │ ──────────────► │         │                               │                           
+   │         │ ◄────────────── │         ├───────┐                       │                           
+   │         │   converter.py  │         │       │                       │                           
+   │         │                 │         │       │                                                   
+   │         │                 │         │       │                  ┌─────────┐                      
+   └─────────┘                 └─────────┘       │  build list of   │         │                      
+                                                 │  INTERVENTIONS   │         │                      
+ interventions.csv          interventions.json   │                  │         │   calculate ΔtCO2    
+                                                 ├───────────────►  │         │  with INTERVENTIONS  
+                                                 │                  │         │                      
+                               ┌─────────┐       │                  │         │                      
+                               │         │       │                  │         │                      
+                               │         │       │                  └─────────┘                      
+                               │         │       │                                                   
+                               │         ├───────┘                interventions.js                   
+                               │         │                                                           
+                               │         │                                                           
+                               │         │                                                           
+                               └─────────┘                                                           
+                                                                                                     
+                               groups.json                                                           
+                                                                                                     
+```
+
 
 ### Functions
 * state.js
