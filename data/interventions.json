@@ -724,6 +724,53 @@
       }
     },
     {
+      "id": "reduce_linen_par_levels",
+      "group": "laundry",
+      "title": "Reduce default linen and towel par levels",
+      "type": "slider",
+      "impact_category": "procurement",
+      "range": {
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "% reduction"
+      },
+      "baseline_control": {
+        "label": "Linen/towel par level reduction",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 20,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%"
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Reduced laundry and textile procurement energy/water by fewer items per patient.",
+        "params": {
+          "percent_reduction": 15,
+          "category": "procurement",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "\ud83e\uddfa",
+        "summary": "Reduce baseline linen/towel stock to decrease laundering.",
+        "details_markdown": "Baseline laundry ~1.5\u20132 kg CO\u2082e/kg; par cut 15\u201340% saves 3\u201315 tCO\u2082e/yr (Vozzola 2020).",
+        "references": [
+          {
+            "label": "Vozzola E et al. J Healthc Eng 2020",
+            "url": "Vozzola E et al. J Healthc Eng 2020"
+          },
+          {
+            "label": "CDC Linen Processing Energy Data 2019",
+            "url": "CDC Linen Processing Energy Data 2019"
+          }
+        ]
+      }
+    },
+    {
       "id": "reduce_unnecessary_admissions",
       "group": "low_value_care",
       "title": "Avoid unnecessary ICU admissions through accurate triage",
@@ -784,6 +831,57 @@
         "summary": "Earlier alignment may avert non-beneficial interventions that are not aligned with patient/family wishes.",
         "details_markdown": "(Hard to quantify precisely; conservative 5% proxy.)",
         "references": []
+      }
+    },
+    {
+      "id": "abcde_bundle",
+      "group": "low_value_care",
+      "title": "Implement ABCDEF (ICU Liberation) bundle",
+      "type": "slider",
+      "impact_category": "procurement",
+      "range": {
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "% implementation"
+      },
+      "baseline_control": {
+        "label": "Bundle implementation rate",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 50,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%"
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Reduced ICU LOS and ventilator time lowers energy and consumables footprint; ~10% overall ICU GHG reduction at full adoption.",
+        "params": {
+          "percent_reduction": 10,
+          "category": "procurement",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "\ud83d\udecf\ufe0f",
+        "summary": "Comprehensive ICU liberation bundle reduces ventilator days and ICU length of stay.",
+        "details_markdown": "Typical reduction \u22480.8 vent days + 1 ICU day/patient (Balas 2014; Pun 2019). Estimated 8\u201312% total ICU GHG reduction.",
+        "references": [
+          {
+            "label": "Balas MC et al. Crit Care Med 2014",
+            "url": "Balas MC et al. Crit Care Med 2014"
+          },
+          {
+            "label": "Pun BT et al. Crit Care Med 2019",
+            "url": "Pun BT et al. Crit Care Med 2019"
+          },
+          {
+            "label": "Barnes-Daly MA et al. BMJ Qual Saf 2018",
+            "url": "Barnes-Daly MA et al. BMJ Qual Saf 2018"
+          }
+        ]
       }
     },
     {
@@ -885,6 +983,57 @@
         "summary": "Targeted CRRT utilization to clinical indications.",
         "details_markdown": "Local stewardship program reduces running hours.",
         "references": []
+      }
+    },
+    {
+      "id": "early_palliative_care",
+      "group": "low_value_care",
+      "title": "Early palliative care consults for high-risk ICU patients",
+      "type": "slider",
+      "impact_category": "procurement",
+      "range": {
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "% patients"
+      },
+      "baseline_control": {
+        "label": "Eligible admissions receiving early palliative consult",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 50,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%"
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Reduces non-beneficial interventions and ICU LOS modestly; proxy 5\u201310% resource reduction.",
+        "params": {
+          "percent_reduction": 6,
+          "category": "procurement",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "\ud83d\udd4a\ufe0f",
+        "summary": "Early palliative input aligns care and may shorten ICU stays.",
+        "details_markdown": "Average 0.3\u20130.6 day LOS reduction/patient; 5\u201320 tCO\u2082e/yr savings.",
+        "references": [
+          {
+            "label": "Temel JS et al. N Engl J Med 2010",
+            "url": "Temel JS et al. N Engl J Med 2010"
+          },
+          {
+            "label": "Khandelwal N et al. Crit Care Med 2015",
+            "url": "Khandelwal N et al. Crit Care Med 2015"
+          },
+          {
+            "label": "Mowatt et al. 2023",
+            "url": "Mowatt et al. 2023"
+          }
+        ]
       }
     },
     {
@@ -1166,6 +1315,53 @@
           {
             "label": "Behavioural patterns of electrolyte repletion in intensive care units (2018)",
             "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6085366/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "antibiotic_stewardship",
+      "group": "pharmacy",
+      "title": "Antibiotic stewardship and early de-escalation",
+      "type": "slider",
+      "impact_category": "pharma",
+      "range": {
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "% eligible patients"
+      },
+      "baseline_control": {
+        "label": "% eligible for stewardship",
+        "type": "number",
+        "default_enabled": true,
+        "default_value": 50,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%"
+      },
+      "calculation": {
+        "method": "percent_of_category",
+        "formula_note": "Fewer doses. Less IV prep/infusion consumables and shorter LOS reduce emissions.",
+        "params": {
+          "percent_reduction": 8,
+          "category": "pharma",
+          "scale_with_value_pct": true
+        }
+      },
+      "ui": {
+        "icon": "\ud83d\udc8a",
+        "summary": "Antibiotic stewardship reduces unnecessary therapy and IV resource use.",
+        "details_markdown": "10\u201325% reduction in DOT yields 2\u201310 tCO\u2082e/yr savings (IDSA/SHEA 2023).",
+        "references": [
+          {
+            "label": "Barlam TF et al. Clin Infect Dis 2016",
+            "url": "Barlam TF et al. Clin Infect Dis 2016"
+          },
+          {
+            "label": "CDC Core Elements of Hospital Antibiotic Stewardship 2019",
+            "url": "CDC Core Elements of Hospital Antibiotic Stewardship 2019"
           }
         ]
       }
