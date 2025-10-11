@@ -71,6 +71,14 @@ Users can adjust in assumptions.json when site-specific data are available.
 | Sevoflurane | 130    | Lower GWP; minimal ICU use                 |
 | Isoflurane  | 510    | Moderate GWP                               |
 
+#### Units and Conventions
+* All greenhouse gas (GHG) emissions in this calculator are expressed in metric tons of CO₂ equivalent (`t CO₂e`) per year unless otherwise specified.
+  * Metric ton = 1,000 kg (≈ 2,204.6 lb).
+* The “CO₂ equivalent” unit converts non-CO₂ gases (e.g., CH₄, N₂O, anesthetic gases) into their equivalent impact based on their 100-year Global Warming Potential (GWP₁₀₀) as defined by the Intergovernmental Panel on Climate Change (IPCC AR6).
+* Energy use is normalized to kilowatt-hours (kWh) and multiplied by a location-specific grid emission factor (kg CO₂e per kWh).
+* Per-patient or per-bed values are scaled to annual totals using user-provided ICU size and occupancy assumptions.
+* All calculations are approximate and intended for educational and quality-improvement purposes, not for regulatory carbon accounting.
+  * Users should adapt grid factors and GWP values to their own jurisdiction and reference year when possible.
 
 
 ## ⚙️ Implementation
@@ -163,4 +171,5 @@ This is provided "as is" without warranty of any kind with under an [MIT License
 * NHS England. Delivering a ‘Net Zero’ National Health Service. 2020.
 * EPA eGRID (2022–24). Power Profiler ZIP-to-subregion database.
 * IPCC AR6 WGIII. Global Warming Potentials (100-year).
+* Weppner WG et al, A Longitudinal Assessment of Greenhouse Gas Emissions From Inhaler Devices in a National Health System. JAMA. 2025. doi:10.1001/jama.2025.15638
 
