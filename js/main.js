@@ -2,12 +2,14 @@ import { loadAllData } from './data.js';
 import { initUI } from './ui.js';
 import { recalcBaseline } from './baseline.js';
 import { renderInterventions, applyInterventions, applyInterventionEnableStates } from './interventions.js';
+import { drawCompare } from './charts.js'; // ✅ added import
 
 (async function boot(){
   try{
     await loadAllData();
     initUI();
     recalcBaseline();
+    drawCompare(); // ✅ added — ensures chart renders immediately on load
     renderInterventions();
     applyInterventions();
     applyInterventionEnableStates();

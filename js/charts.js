@@ -2,6 +2,11 @@ import { svgEl, showTip, hideTip, fmt } from './utils.js';
 import { state } from './state.js';
 import { CATEGORY_ORDER } from './config.js';
 
+/* helper: shorter label to avoid overlap */
+function shortTons(total){
+  return `${fmt.tnum(total)} t/yr`;
+}
+
 export function drawStack(containerId, categories_t, titleText){
   const box = document.getElementById(containerId);
   if(!box || box.clientWidth < 20 || box.clientHeight < 20) return; // guard
@@ -80,8 +85,9 @@ export function drawCompare(){
     svg.appendChild(label);
   }
 
-  drawStackAt(x1, baseCats, totalBase, `Baseline ${fmt.tnum(totalBase)} tons CO2/year`, false);
-  drawStackAt(x2, postCats, totalPost, `Post interventions ${fmt.tnum(totalPost)} tons CO2/year`, true);
+  // Use shorter labels to prevent horizontal overlap
+  drawStackAt(x1, baseCats, totalBase, `Baseline ${shortTons(totalBase)}`, false);
+  drawStackAt(x2, postCats, totalPost, `After ${shortTons(totalPost)}`, true);
 
   box.appendChild(svg);
 }
