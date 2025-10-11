@@ -82,11 +82,11 @@ Users can adjust in assumptions.json when site-specific data are available.
 
 
 ## ⚙️ Implementation
-### Files
+### Files/Structure
 ```
 / (project root)
 ├─ index.html                     # Minimal HTML shell. Loads styles & JS modules in order.
-├─ styles.css                     # All CSS you currently have (moved out of index.html)
+├─ styles.css                     # Defines appearance of website
 ├─ /data
 │  ├─ assumptions.json
 │  ├─ interventions.json
@@ -151,7 +151,6 @@ Users can adjust in assumptions.json when site-specific data are available.
                                groups.json                                                           
                                                                                                      
 ```
-
 
 ### Functions
 * state.js
