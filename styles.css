@@ -24,17 +24,27 @@
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
-  margin:0; background:
+  margin:0;
+  background:
     radial-gradient(1200px 600px at 10% -10%, #e6f6ff 0%, transparent 60%),
     radial-gradient(1200px 600px at 90% -20%, #eafff3 0%, transparent 60%),
     var(--bg);
-  color:var(--text); font: 15px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial;
+  color:var(--text);
+  font: 15px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial;
+  padding-top:275px; /* generous offset for fixed header */
+  padding-bottom:200px; /* ensures footer never overlaps content */
 }
 a{color:var(--accent)}
 header{
-  position:sticky; top:0; z-index:100;
-  background:rgba(247,251,255,.85); backdrop-filter: blur(10px);
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  background:rgba(247,251,255,.88);
+  backdrop-filter: blur(10px);
   border-bottom:1px solid var(--border);
+  box-shadow: 0 4px 10px rgba(0,0,0,.04);
 }
 .wrap{max-width:1200px; margin:0 auto; padding:14px 18px}
 .flex{display:flex; gap:16px; align-items:center}
@@ -68,7 +78,11 @@ header{
 .tabbtn[aria-selected="true"]{
   outline:2px solid var(--accent); color:#05212f; background:linear-gradient(180deg,#e0f4ff,#c9efff)
 }
-main{max-width:1200px; margin:18px auto; padding:0 18px 100px}
+main{
+  max-width:1200px;
+  margin:18px auto;
+  padding:100px 18px 140px; /* extra space top and bottom for header/footer visibility */
+}
 .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:16px}
 .card{
   background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
@@ -78,22 +92,16 @@ main{max-width:1200px; margin:18px auto; padding:0 18px 100px}
 .row{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
 label{display:block; font-size:13px; color:var(--sub); margin-bottom:6px; font-weight:700}
 input[type="text"], input[type="number"], select{
-  width:100%; background:#f7fbff; color:#0c1b2a;
+  width:100%; background:#f7fbff; color:var(--text);
   border:1px solid var(--border); border-radius:10px; padding:10px 12px
 }
 input[type="range"]{width:100%}
 .i{color:var(--sub); font-size:12px}
 .accordion{border-top:1px dashed var(--muted); margin-top:12px}
-.acc-item{border-bottom:1px dashed var(--muted); padding-bottom:6px}
-.acc-head{display:flex; justify-content:space-between; align-items:center; padding:10px 0; cursor:pointer}
+.acc-item{border-bottom:1px dashed var(--muted)}
+.acc-head{display:flex; justify-content:space-between; align-items:center; padding:10px 0; cursor:pointer; -webkit-tap-highlight-color: transparent;}
 .acc-title{font-weight:800; display:flex; align-items:center; gap:8px}
-.caret{display:inline-block; transform:rotate(-90deg); transition:transform .2s ease; font-weight:900; color:#083349}
-.caret.open{transform:rotate(0deg)}
-.group-head{margin-top:10px; padding:8px 10px; background:#f0f8ff; border:1px solid var(--border); border-radius:12px; font-weight:800; color:#083349; display:flex; align-items:center; gap:8px; cursor:pointer}
-.group-box{border:1px solid var(--border); background:linear-gradient(180deg,#ffffff,#f8fcff); border-radius:14px; padding:10px; margin-top:6px; box-shadow:var(--shadow)}
-.group-box.collapsed .group-content{display:none}
-.group-box .group-title{display:flex; align-items:center; gap:8px; font-weight:900; color:#083349}
-.group-box .group-title .caret{margin-right:4px}
+.group-head{margin-top:10px; padding:8px 10px; background:#f0f8ff; border:1px solid var(--border); border-radius:12px; font-weight:800; color:#083349; display:flex; align-items:center; gap:8px}
 .chip{display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-size:12px; font-weight:800}
 .chip.green{background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0}
 .chip.red{background:#fff1f2; color:#9f1239; border:1px solid #fecdd3}
@@ -105,34 +113,166 @@ input[type="range"]{width:100%}
 .btn.primary{background:linear-gradient(180deg,#a7e8ff,#7dd3fc); color:#05212f}
 .btn.ghost{background:transparent}
 .tools{display:flex; gap:8px; flex-wrap:wrap}
-.side{position:sticky; top:92px; height:fit-content}
+.side{position:sticky; top:250px; height:fit-content}
 .chart{width:100%; height:420px; background:#f7fbff; border:1px solid var(--border); border-radius:12px; padding:6px; position:relative}
 .chart svg{width:100%; height:100%}
 .legend{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
-.legend .item{display:flex; align-items:center; gap:6px; font-size:12px; color:#6b879e}
+.legend .item{display:flex; align-items:center; gap:6px; font-size:12px; color:var(--sub)}
 .sw{width:12px; height:12px; border-radius:3px; display:inline-block}
 .k{color:var(--sub); font-size:12px}
 .footerbar{
-  position:fixed; left:0; right:0; bottom:0; background:rgba(255,255,255,.9); border-top:1px solid var(--border); backdrop-filter: blur(8px)
+  position:fixed;
+  left:0; right:0; bottom:0;
+  background:rgba(255,255,255,.9);
+  border-top:1px solid var(--border);
+  backdrop-filter: blur(8px);
+  z-index:900;
+  box-shadow: 0 -4px 10px rgba(0,0,0,.05);
 }
 .drawer{
   position:fixed; right:18px; bottom:80px; width:360px; max-width:95vw;
-  background:var(--card); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); padding:14px; display:none
+  background:var(--card); border:1px solid var(--border); border-radius:16px;
+  box-shadow:var(--shadow); padding:14px; display:none
 }
 .drawer.open{display:block}
 .small{font-size:12px; color:var(--sub)}
 hr.slim{border:0; border-top:1px solid var(--border); margin:10px 0}
 .notice{font-size:12px; color:var(--sub)}
 .mt8{margin-top:8px} .mt12{margin-top:12px} .mt16{margin-top:16px}
+
+/* Tooltip */
 #tooltip{
   position:fixed; pointer-events:none; z-index:2000;
   background:#061d2b; color:#e6f6ff; padding:8px 10px; border-radius:8px;
   font-size:12px; border:1px solid #114055; display:none; white-space:nowrap;
   box-shadow: 0 8px 20px rgba(0,0,0,.2);
 }
-/* Grey-out for disabled interventions (tied to baseline not selected) */
-.disabled{
-  opacity:.45;
-  pointer-events:none;
-  filter:grayscale(0.3);
+
+/* ===== Mobile-friendly tweaks ===== */
+@media (max-width: 960px){
+  .wrap{ padding:12px 14px }
+  .topbar{ grid-template-columns: 1fr; gap:10px; }
+  .big{ font-size:24px }
+  header .tools{ flex-wrap:wrap }
+  header .tools .btn{ padding:8px 10px; border-radius:12px }
+  .tabs{ gap:8px; }
+  .tabbtn{ padding:10px 12px }
+  main{ padding: 80px 14px 160px; }
+  .grid{ grid-template-columns: 1fr; }
+  .side{ position: static; top: auto; }
+  .chart{ height: 280px; padding: 8px; }
+  input[type="text"], input[type="number"], select{ padding: 12px 14px; font-size: 16px; }
+  input[type="range"]{ height: 36px; }
+  .acc-head{ padding: 14px 0; }
+  .acc-title{ gap:10px; }
+  .group-head{ font-size: 14px; padding: 10px 12px; border-radius: 14px; }
+  .footerbar .wrap{ padding: 10px 14px; }
+}
+@media (min-width: 961px) and (max-width: 1200px){
+  .chart{ height: 340px; }
+}
+
+/* === Positive/Negative Accent Inputs === */
+.checkbox-green:checked {
+  accent-color: #22c55e;
+}
+.checkbox-red:checked {
+  accent-color: #ef4444;
+}
+
+/* === Green slider fill === */
+.slider-green {
+  appearance: none;
+  height: 6px;
+  border-radius: 6px;
+  background: linear-gradient(to right, #22c55e var(--percent, 0%), #e9f0f6 var(--percent, 0%));
+}
+.slider-green::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #22c55e;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid #1a7f45;
+}
+.slider-green::-moz-range-progress {
+  background-color: #22c55e;
+}
+.slider-green::-moz-range-track {
+  background-color: #e9f0f6;
+}
+
+/* === Collapsible group containers === */
+.group-box{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-top: 12px;
+}
+.group-title{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 800;
+  color: #083349;
+  background: #f0f8ff;
+  border-bottom: 1px dashed var(--muted);
+  -webkit-tap-highlight-color: transparent;
+}
+.group-title .caret{
+  display: inline-block;
+  transition: transform .18s ease;
+}
+.group-title .caret:not(.open){
+  transform: rotate(-90deg);
+}
+.group-content{
+  padding: 10px 12px;
+}
+.group-box.collapsed .group-content{
+  display: none;
+}
+
+/* ===== Fix: keep charts and sections clear of fixed header ===== */
+:root{
+  --header-h: 375px; /* matches body padding-top offset */
+}
+
+/* Reinforce fixed header */
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Ensure chart cards respect the header space */
+.card .chart:first-child {
+  margin-top: 24px;
+}
+
+.chart {
+  margin-top: 30px; /* extra buffer below header before charts start */
+}
+
+/* All major sections and cards stay below header when navigated or scrolled */
+#chartStackBaseline,
+#chartCompare,
+section[id^="tab-"],
+.group-box,
+.card {
+  scroll-margin-top: var(--header-h);
+}
+
+/* === Keep chart card visible below header while scrolling === */
+.card.sticky-chart {
+  position: sticky;
+  top: 375px; /* same as header height / body padding-top */
+  z-index: 500; /* stays below header but above content */
+  background: var(--card);
 }
