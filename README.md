@@ -33,7 +33,7 @@ Annual_tCO2e = Beds × Occupancy × 365 × (Intensity_kgCO2e_per_patient_day / 1
 | Category shares         | Energy 0.65 • Procurement 0.18 • Pharma 0.10 • Gases 0.03 • Waste 0.02 • Water 0.02 | Literature mean                   |
 
 Interventions fall into several categories:
-* percent_of_category
+* `percent_of_category` which refers to `lighting`, `energy_hvac`, `procurement`, `waste`, `crrt`, `pharma`, `medical gasses`, 
 * direct_savings
 * per_patient_day_delta
 * intensity_per_hour
