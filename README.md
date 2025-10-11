@@ -197,19 +197,23 @@ python3 converter.py csv-to-json \
    * param_kwh_per_hour_per_bed, param_grid_factor_source, param_annual_usage_kg, param_gwp100, param_annual_agent_minutes, param_agent_consumption_ml_per_min, param_density_g_per_ml, param_percent_reduction, param_category,    param_scale_with_value_pct, param_kg_per_hour, param_kg_co2e_per_puff
 * UI: ui_icon, ui_summary, ui_details_markdown, ui_references (use Label|URL;Another Label|URL2)
 
-# Versioning
+## Versioning
 * Current Version: 2.1.x
+* Schema: x.y.z where
+  * x is structual changes in file system/architecture or addition of new files
+  * y is code changes within existing files
+  * z is the version of interventions JSON 
 
-# 💾 Data sources
+## 💾 Data sources
 Uses the [EPA eGRID dataset](https://www.epa.gov/egrid) to estimate regional CO2 production.
 
-# 🪪 License
+## 🪪 License
 © 2025 Nick Mark, MD
 Please credit ICU GHG Calculator and cite underlying research when reproducing or extending the tool.
 
 This is provided "as is" without warranty of any kind with under an [MIT License](https://github.com/nickmmark/icu-ghg-calculator/blob/main/LICENSE).
 
-# 📚️ References
+## 📚️ References
 * McGain F et al. Life cycle assessment of intensive care units in Australia and the USA. Crit Care Med. 2018;46(10):e983–e990.
 * Sherman JD et al. Carbon footprint of critical care: a systematic review. BMJ Open 2024.
 * NHS England. Delivering a ‘Net Zero’ National Health Service. 2020.
