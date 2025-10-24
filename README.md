@@ -27,48 +27,47 @@ Try the calculator out [here](https://nickmmark.github.io/icu-ghg-calculator/)
 ## Strategies to reduce ICU GHG consumption
 ![ICU OnePager infographic](https://static1.squarespace.com/static/5e6d5df1ff954d5b7b139463/t/68f42c240a800149eae34935/1760832549003/ICU_OnePager_sustainability.png)
 
-|   id                                      |   group           |
-|-------------------------------------------|-------------------|
-|   switch_iv_to_oral                       |   pharmacy        |
-|   reduce_overuse_prophylaxis              |   pharmacy        |
-|   avoid_aggressive_electrolyte_repletion  |   pharmacy        |
-|   antibiotic_stewardship                  |   pharmacy        |
-|   eliminate_n2o                           |   pharmacy        |
-|   eliminate_desflurane                    |   pharmacy        |
-|   mdi_to_nebulizer                        |   respiratory     |
-|   reusable_bronchoscopy                   |   respiratory     |
-|   disposable_stethoscopes                 |   respiratory     |
-|   avoid_overoxygenation_fine              |   respiratory     |
-|   segregate_biohazard_waste               |   waste_removal   |
-|   abcde_bundle                            |   low_value_care  |
-|   reduce_unnecessary_admissions           |   low_value_care  |
-|   goals_of_care_discussion                |   low_value_care  |
-|   peripheral_vasopressors                 |   low_value_care  |
-|   avoid_overdiagnosis                     |   low_value_care  |
-|   crrt_stewardship                        |   low_value_care  |
-|   early_palliative_care                   |   low_value_care  |
-|   telepresence_transport                  |   low_value_care  |
-|   plant_based_foods                       |   nutrition       |
-|   seasonal_menu_planning                  |   nutrition       |
-|   local_sustainable_food_sourcing         |   nutrition       |
-|   plastics_recycling_program              |   waste_removal   |
-|   stock_items_outside_room                |   waste_removal   |
-|   reusable_gowns                          |   laundry         |
-|   reduce_linen_par_levels                 |   laundry         |
-|   extend_equipment_lifespan               |   laundry         |
-|   use_natural_daylight                    |   infrastructure  |
-|   lights_night_dimming                    |   infrastructure  |
-|   switch_to_led                           |   infrastructure  |
-|   reduce_paper_printing                   |   infrastructure  |
-|   staff_commute_low_carbon                |   infrastructure  |
-|   low_emission_deliveries                 |   infrastructure  |
-|   onsite_solar_offset                     |   infrastructure  |
-|   demand_control_ventilation              |   infrastructure  |
-|   moderate_temp_setpoint                  |   infrastructure  |
-|   high_efficiency_equipment               |   infrastructure  |
-|   heat_recovery_system                    |   infrastructure  |
-|   improved_insulation                     |   infrastructure  |
-
+|   id                                      |   group           |   title                                                                    |
+|-------------------------------------------|-------------------|----------------------------------------------------------------------------|
+|   switch_iv_to_oral                       |   pharmacy        |   Switch eligible IV medications to oral                                   |
+|   reduce_overuse_prophylaxis              |   pharmacy        |   Avoid routine prophylaxis (e.g., PPIs) for low-risk patients             |
+|   avoid_aggressive_electrolyte_repletion  |   pharmacy        |   Avoid aggressive electrolyte replacement when not indicated              |
+|   antibiotic_stewardship                  |   pharmacy        |   Antibiotic stewardship and early de-escalation                           |
+|   eliminate_n2o                           |   pharmacy        |   Eliminate N₂O use                                                        |
+|   eliminate_desflurane                    |   pharmacy        |   Eliminate desflurane                                                     |
+|   mdi_to_nebulizer                        |   respiratory     |   Switch MDI to nebulizer whenever clinically appropriate                  |
+|   reusable_bronchoscopy                   |   respiratory     |   Shift to reusable bronchoscopes                                          |
+|   disposable_stethoscopes                 |   respiratory     |   Eliminate disposable stethoscopes (clean reusable stethoscopes instead)  |
+|   avoid_overoxygenation_fine              |   respiratory     |   Titrate oxygen to target range (avoid over-oxygenation)                  |
+|   abcde_bundle                            |   low_value_care  |   Implement ABCDEF (ICU Liberation) bundle                                 |
+|   reduce_unnecessary_admissions           |   low_value_care  |   Avoid unnecessary ICU admissions through accurate triage                 |
+|   goals_of_care_discussion                |   low_value_care  |   Discuss goals of care on all admissions                                  |
+|   peripheral_vasopressors                 |   low_value_care  |   Use peripheral vasopressors when safe instead of central lines           |
+|   avoid_overdiagnosis                     |   low_value_care  |   Avoid over-investigation and routine testing (e.g. daily CXR)            |
+|   crrt_stewardship                        |   low_value_care  |   CRRT stewardship (reduce unnecessary hours)                              |
+|   early_palliative_care                   |   low_value_care  |   Early palliative care consults for high-risk ICU patients                |
+|   telepresence_transport                  |   low_value_care  |   Use telepresence for meetings and follow-up when possible                |
+|   plant_based_foods                       |   nutrition       |   Increase plant-based foods for patients and staff                        |
+|   seasonal_menu_planning                  |   nutrition       |   Seasonal menu planning (local & in-season foods)                         |
+|   local_sustainable_food_sourcing         |   nutrition       |   Increase local/sustainable food sourcing                                 |
+|   use_natural_daylight                    |   infrastructure  |   Use natural daylight (e.g. shades up) during the day                     |
+|   lights_night_dimming                    |   infrastructure  |   Dim ICU lighting at night                                                |
+|   switch_to_led                           |   infrastructure  |   Upgrade from incandescent/halogen to modern LED lighting                 |
+|   reduce_paper_printing                   |   infrastructure  |   Reduce paper printouts and forms                                         |
+|   staff_commute_low_carbon                |   infrastructure  |   Incentivize low‑carbon staff commuting (carpool, bike, transit)          |
+|   low_emission_deliveries                 |   infrastructure  |   Low-emission deliveries (EV, bike, consolidated routes)                  |
+|   onsite_solar_offset                     |   infrastructure  |   Offset electricity with onsite renewables (e.g., solar)                  |
+|   demand_control_ventilation              |   infrastructure  |   HVAC: Demand-controlled or variable-air-volume ventilation               |
+|   moderate_temp_setpoint                  |   infrastructure  |   HVAC: Relax temperature set-point by 1–3°C                               |
+|   high_efficiency_equipment               |   infrastructure  |   HVAC: High-efficiency plant equipment upgrades                           |
+|   heat_recovery_system                    |   infrastructure  |   HVAC: Heat recovery for ventilation/chilled-water (ERV/HRCH)             |
+|   improved_insulation                     |   infrastructure  |   Improve hospital insulation                                              |
+|   segregate_biohazard_waste               |   waste_removal   |   Use biohazard waste only for visibly blood-soiled items                  |
+|   plastics_recycling_program              |   waste_removal   |   Plastics recycling program (clinical & non-clinical)                     |
+|   stock_items_outside_room                |   waste_removal   |   Stock fewer single-use items inside patient rooms                        |
+|   reusable_gowns                          |   laundry         |   Switch to reusable isolation gowns                                       |
+|   reduce_linen_par_levels                 |   laundry         |   Reduce default linen and towel par levels                                |
+|   extend_equipment_lifespan               |   laundry         |   Repair/maintain washers/dryers/blanket warmers                           |
 
 
 
