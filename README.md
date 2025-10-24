@@ -27,6 +27,50 @@ Try the calculator out [here](https://nickmmark.github.io/icu-ghg-calculator/)
 ## Strategies to reduce ICU GHG consumption
 ![ICU OnePager infographic](https://static1.squarespace.com/static/5e6d5df1ff954d5b7b139463/t/68f42c240a800149eae34935/1760832549003/ICU_OnePager_sustainability.png)
 
+|   id                                      |   group           |
+|-------------------------------------------|-------------------|
+|   switch_iv_to_oral                       |   pharmacy        |
+|   reduce_overuse_prophylaxis              |   pharmacy        |
+|   avoid_aggressive_electrolyte_repletion  |   pharmacy        |
+|   antibiotic_stewardship                  |   pharmacy        |
+|   eliminate_n2o                           |   pharmacy        |
+|   eliminate_desflurane                    |   pharmacy        |
+|   mdi_to_nebulizer                        |   respiratory     |
+|   reusable_bronchoscopy                   |   respiratory     |
+|   disposable_stethoscopes                 |   respiratory     |
+|   avoid_overoxygenation_fine              |   respiratory     |
+|   segregate_biohazard_waste               |   waste_removal   |
+|   abcde_bundle                            |   low_value_care  |
+|   reduce_unnecessary_admissions           |   low_value_care  |
+|   goals_of_care_discussion                |   low_value_care  |
+|   peripheral_vasopressors                 |   low_value_care  |
+|   avoid_overdiagnosis                     |   low_value_care  |
+|   crrt_stewardship                        |   low_value_care  |
+|   early_palliative_care                   |   low_value_care  |
+|   telepresence_transport                  |   low_value_care  |
+|   plant_based_foods                       |   nutrition       |
+|   seasonal_menu_planning                  |   nutrition       |
+|   local_sustainable_food_sourcing         |   nutrition       |
+|   plastics_recycling_program              |   waste_removal   |
+|   stock_items_outside_room                |   waste_removal   |
+|   reusable_gowns                          |   laundry         |
+|   reduce_linen_par_levels                 |   laundry         |
+|   extend_equipment_lifespan               |   laundry         |
+|   use_natural_daylight                    |   infrastructure  |
+|   lights_night_dimming                    |   infrastructure  |
+|   switch_to_led                           |   infrastructure  |
+|   reduce_paper_printing                   |   infrastructure  |
+|   staff_commute_low_carbon                |   infrastructure  |
+|   low_emission_deliveries                 |   infrastructure  |
+|   onsite_solar_offset                     |   infrastructure  |
+|   demand_control_ventilation              |   infrastructure  |
+|   moderate_temp_setpoint                  |   infrastructure  |
+|   high_efficiency_equipment               |   infrastructure  |
+|   heat_recovery_system                    |   infrastructure  |
+|   improved_insulation                     |   infrastructure  |
+
+
+
 
 ## 🧮 Calculations
 
