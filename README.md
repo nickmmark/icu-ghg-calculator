@@ -24,6 +24,9 @@ Try the calculator out [here](https://nickmmark.github.io/icu-ghg-calculator/)
 * Expandable details: Each intervention shows assumptions, formula, and references.
 * Modular JSON architecture: Non-technical users can edit assumptions and interventions without touching code.
 
+## Strategies to reduce ICU GHG consumption
+![ICU OnePager infographic](https://static1.squarespace.com/static/5e6d5df1ff954d5b7b139463/t/68f42c240a800149eae34935/1760832549003/ICU_OnePager_sustainability.png)
+
 
 ## 🧮 Calculations
 
