@@ -210,24 +210,15 @@ Users can adjust in assumptions.json when site-specific data are available.
 ```
 
 ### Functions
-* state.js
-   * state (object): { assumptions, interventions, zipTable, subregionTable, inputs, baselinePractices, derived }
-* data.js
-   * loadAllData() → loads all four files; normalizes interventions (defaults OFF/0); validates shapes
-* ui.js
-   * initUI(), updateTopBar()
-* baseline.js
-   * lookupGridFactor(), recalcBaseline()
-* interventions.js
-   * renderBaselinePractices(), renderInterventions(), applyInterventions()
-* charts.js
-   * drawStack(containerId, categories, title), drawCompare()
-* exports.js
-   * exportCSV(), exportJSON(), renderAssumptionsHTML()
-* router.js
-   * updateURLState(), applyURLState()
-* main.js
-   * orchestrates boot order
+* state.js - state (object): { assumptions, interventions, zipTable, subregionTable, inputs, baselinePractices, derived }
+* data.js - loadAllData() → loads all four files; normalizes interventions (defaults OFF/0); validates shapes
+* ui.js - initUI(), updateTopBar()
+* baseline.js - lookupGridFactor(), recalcBaseline()
+* interventions.js - renderBaselinePractices(), renderInterventions(), applyInterventions()
+* charts.js - drawStack(containerId, categories, title), drawCompare()
+* exports.js - exportCSV(), exportJSON(), renderAssumptionsHTML()
+* router.js - updateURLState(), applyURLState()
+* main.js - orchestrates boot order
 
 ### Creating/updating interventions.json
 Use the helper script `converter.py`
